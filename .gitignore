@@ -1,2 +1,4 @@
 __pycache__/
 .env
+dum.py 
+settings.py.orig
