@@ -7,3 +7,4 @@ mailtrap
 django-celery-results
 vonage
 gunicorn==22.0.0
+redis
