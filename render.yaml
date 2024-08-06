@@ -1,0 +1,41 @@
+#################################################################
+# Example render.yaml                                           #
+# Do not use this file directly! Consult it for reference only. #
+#################################################################
+
+# List all services *except* PostgreSQL databases here
+services:
+  # A web service on the Python native runtime
+  - type: web
+    runtime: python
+    name: appointment-bp
+    repo: https://github.com/Genius-Excel/appointment.git # Default: Repo containing render.yaml
+    numInstances: 1   # Manual scaling configuration. Default: 1 for new services
+    region: oregon # Default: oregon
+    plan: free    # Default: starter
+    branch: master      # Default: master
+    buildCommand: pip install -r requirements.txt
+    preDeployCommand: gunicorn appointment.wsgi
+    # startCommand: python manage.py runserver
+    autoDeploy: false # Disable automatic deploys
+    maxShutdownDelaySeconds: 120 # Increase graceful shutdown period. Default: 30, Max: 300
+    domains: # Custom domains
+      - trostech.oregon.com
+      - favour.oregon.com
+    # envVars: # Environment variables
+    #   - key: API_BASE_URL
+    #     value: https://api.example.com # Hardcoded value
+    #   - key: APP_SECRET
+    #     generateValue: true # Generate a base64-encoded 256-bit value
+    #   - key: STRIPE_API_KEY
+    #     sync: false # Prompt for a value in the Render Dashboard
+    #   - key: DATABASE_URL
+    #     fromDatabase: # Reference a property of a database (see available properties below)
+    #       name: mydatabase
+    #       property: connectionString
+    #   - key: MINIO_PASSWORD
+    #     fromService: # Reference a value from another service
+    #       name: minio
+    #       type: pserv
+    #       envVarKey: MINIO_ROOT_PASSWORD
+    #   - fromGroup: my-env-group # Add all variables from an environment group
