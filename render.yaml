@@ -22,9 +22,9 @@ services:
     domains: # Custom domains
       - trostech.oregon.com
       - favour.oregon.com
-    # envVars: # Environment variables
-    #   - key: API_BASE_URL
-    #     value: https://api.example.com # Hardcoded value
+    envVars: # Environment variables
+      - key: REDIS_PASS
+        value: m78Bgsa3JZkGT2qBk4l63rWXSDBrsint
     #   - key: APP_SECRET
     #     generateValue: true # Generate a base64-encoded 256-bit value
     #   - key: STRIPE_API_KEY
