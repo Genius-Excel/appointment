@@ -18,7 +18,7 @@ services:
     preDeployCommand: gunicorn appointment.wsgi
     # startCommand: python manage.py runserver
     autoDeploy: false # Disable automatic deploys
-    maxShutdownDelaySeconds: 120 # Increase graceful shutdown period. Default: 30, Max: 300
+    # maxShutdownDelaySeconds: 120 # Increase graceful shutdown period. Default: 30, Max: 300
     domains: # Custom domains
       - trostech.oregon.com
       - favour.oregon.com
