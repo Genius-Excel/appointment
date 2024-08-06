@@ -25,25 +25,4 @@ services:
     envVars: # Environment variables
       - key: REDIS_PASS
         value: m78Bgsa3JZkGT2qBk4l63rWXSDBrsint
-  - type: worker
-    runtime: python
-    name: tros-appointment-celery-worker
-    repo: https://github.com/Genius-Excel/appointment.git # Default: Repo containing render.yaml
-    numInstances: 1   # Manual scaling configuration. Default: 1 for new services
-    region: oregon # Default: oregon
-    plan: free    # Default: starter
-    branch: master      # Default: master
-    buildCommand: pip install -r requirements.txt
-    startCommand: celery -A appointment worker --loglevel=info
-
-  # A worker service to run Celery Beat
-  - type: worker
-    runtime: python
-    name: tros-appointment-celery-beat
-    repo: https://github.com/Genius-Excel/appointment.git # Default: Repo containing render.yaml
-    numInstances: 1   # Manual scaling configuration. Default: 1 for new services
-    region: oregon # Default: oregon
-    plan: free    # Default: starter
-    branch: master      # Default: master
-    buildCommand: pip install -r requirements.txt
-    startCommand: celery -A appointment beat --loglevel=info
+  
