@@ -87,13 +87,13 @@ DATABASES = {
 SMTP_API_TOKEN = config("SMTP_API_TOKEN")
 
 # CELERY CONF
-redis_pass = config("REDIS_PASS")
-redis_host = config("REDIS_HOST")
-redis_port = config("REDIS_PORT")
+# redis_pass = config("REDIS_PASS")
+# redis_host = config("REDIS_HOST")
+# redis_port = config("REDIS_PORT")
 
 
-CELERY_broker_url = f'redis://:{redis_pass}@{redis_host}:{redis_port}/0'
-result_backend = f'redis://:{redis_pass}@{redis_host}:{redis_port}/0'
+# CELERY_broker_url = f'redis://:{redis_pass}@{redis_host}:{redis_port}/0'
+result_backend = 'django-db'
 accept_content = ['json']
 task_serializer = 'json'
 result_serializer = 'json'
