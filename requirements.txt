@@ -6,3 +6,4 @@ django-celery-beat
 mailtrap
 django-celery-results
 vonage
+gunicorn==22.0.0
