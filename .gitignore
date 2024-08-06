@@ -2,3 +2,5 @@ __pycache__/
 .env
 dum.py 
 settings.py.orig
+test_env.py
+test_red.py
