@@ -10,8 +10,8 @@ python manage.py makemigrations
 
 python manage.py migrate
 
-celery -A appointment worker --pool=solo -l info
+celery -A appointment worker --pool=solo -l info &
 
-celery -A appointment beat -l info
+celery -A appointment beat -l info &
 
 echo "Script successfully run."
