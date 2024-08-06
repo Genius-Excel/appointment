@@ -14,7 +14,7 @@ services:
     region: oregon # Default: oregon
     plan: free    # Default: starter
     branch: master      # Default: master
-    buildCommand: pip install -r requirements.txt
+    buildCommand: ./custom-build.sh
     preDeployCommand: gunicorn appointment.wsgi
     startCommand: gunicorn appointment.wsgi
     autoDeploy: false # Disable automatic deploys
@@ -35,7 +35,7 @@ services:
     branch: master      # Default: master
     buildCommand: pip install -r requirements.txt
     startCommand: celery -A appointment worker --loglevel=info
-    
+
   # A worker service to run Celery Beat
   - type: worker
     runtime: python
