@@ -19,7 +19,7 @@ redis_port = config("REDIS_PORT")
 # REDER REDIS HOST CREDENTIALS
 
 render_redis_host = config("RENDER_REDIS_HOST")
-app = Celery('appointment', broker=render_redis_host, backend='django-db', include=['appointment.tasks'])
+app = Celery('appointment', broker=f'redis://:{redis_pass}@{redis_host}:{redis_port}/0', backend='django-db', include=['appointment.tasks'])
 
 app.conf.enable_utc = False
 
