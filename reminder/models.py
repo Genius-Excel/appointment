@@ -6,7 +6,8 @@ class ClientAppointment(models.Model):
     last_name = models.CharField(max_length=150, null=True)
     mobile_number = models.CharField(max_length=50)
     email_address = models.CharField(max_length=150, null=True)
-    selected_property = models.TextField()
+    selected_property = models.TextField(null=True)
+    selected_property_address = models.TextField()
     appointment_date = models.DateField()
     appointment_time = models.DateTimeField()
 
