@@ -43,34 +43,34 @@ def send_email_reminder(self):
     # Send appoitments notification
     for appointment in appointments_one_day:
         email_subject = 'Reminder: Property inspection.'
-        email_message = f"Hello {appointment.first_name}, kindly note that your appointment is coming up on {appointment.appointment_date}, see you there!"
+        email_message = f"Hello {appointment.first_name}, kindly note that your appointment is coming up on {appointment.appointment_date}, location:{appointment.selected_property_address} see you there!"
         sender = 'Favour Idowu'
         email_address = appointment.email_address
         custom_email_sender(email_address, email_subject, email_message, sender)
 
         # Send Outbound SMS Reminder
-        sms_message_content = f"Hello {appointment.first_name}, kindly note that your appointment is coming up on {appointment.appointment_date}, see you there!"
+        sms_message_content = f"Hello {appointment.first_name}, kindly note that your appointment is coming up on {appointment.appointment_date}, location:{appointment.selected_property_address} see you there!"
         custom_sms_sender("Tros Technologies", appointment.mobile_number, sms_message_content)
 
 
     for appointment in appointments_one_hour:
         email_subject = 'Reminder: Property inspection.'
-        email_message = f"Hello {appointment.first_name}, kindly note that your appointment is about to start in an hour, see you there!"
+        email_message = f"Hello {appointment.first_name}, kindly note that your appointment is about to start in an hour, location:{appointment.selected_property_address} see you there!"
         sender = 'Favour Idowu'
         email_address = appointment.email_address
         custom_email_sender(email_address, email_subject, email_message, sender)
 
         # Send outbound SMS reminder
-        sms_message_content = f"Hello {appointment.first_name}, kindly note that your appointment is coming up on {appointment.appointment_date}, see you there!"
+        sms_message_content = f"Hello {appointment.first_name}, kindly note that your appointment is coming up on {appointment.appointment_date}, location:{appointment.selected_property_address} see you there!"
         custom_sms_sender("Tros Technologies", appointment.mobile_number, sms_message_content)
 
     for appointment in appointments_ten_minutes:
         email_subject = 'Reminder: Property inspection.'
-        email_message = f"Hello {appointment.first_name}, kindly note that your appointment is about to start in 10 mins, see you there!"
+        email_message = f"Hello {appointment.first_name}, kindly note that your appointment is about to start in 10 mins, location:{appointment.selected_property_address} see you there!"
         sender = 'Favour Idowu'
         email_address = appointment.email_address
         custom_email_sender(email_address, email_subject, email_message, sender)
 
         # Send outbound SMS Reminder
-        sms_message_content = f"Hello {appointment.first_name}, kindly note that your appointment is about to start in 10 mins, see you there!"
+        sms_message_content = f"Hello {appointment.first_name}, kindly note that your appointment is about to start in 10 mins, location:{appointment.selected_property_address} see you there!"
         custom_sms_sender("Tros Technologies", appointment.mobile_number, sms_message_content)
