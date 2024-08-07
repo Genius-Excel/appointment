@@ -19,11 +19,15 @@ redis_port = config("REDIS_PORT")
 # REDER REDIS HOST CREDENTIALS
 
 render_redis_host = config("RENDER_REDIS_HOST")
-app = Celery('appointment', broker=f'redis://:{redis_pass}@{redis_host}:{redis_port}/0', backend='django-db', include=['appointment.tasks'])
+app = Celery('appointment')
 
 app.conf.enable_utc = False
 
-app.conf.update(timezone='Africa/Lagos')
+app.conf.update(timezone='Africa/Lagos',
+                broker_url=f'redis://:{redis_pass}@{redis_host}:{redis_port}/0',
+                result_backend='django-db',
+                beat_scheduler='django_celery_beat.schedulers:DatabaseScheduler'
+)
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
