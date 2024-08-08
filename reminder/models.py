@@ -13,3 +13,13 @@ class ClientAppointment(models.Model):
 
     def __str__(self):
         return f"{self.first_name} --- {self.appointment_date}"
+
+
+
+class CradenMooreClients(models.Model):
+    first_name = models.CharField(max_length=250)
+    mobile_number = models.CharField(max_length=100)
+    meeting_link = models.CharField(max_length=250)
+
+    def __str__(self):
+        return f"{self.first_name} - {self.mobile_number} {self.meeting_link[:5]}"
