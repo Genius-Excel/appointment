@@ -6,3 +6,5 @@ test_env.py
 test_red.py
 reminder/migrations/0002_clientappointment_selected_property_address_and_more.py
 celery-run.sh
+
+prod-db.sqlite3
