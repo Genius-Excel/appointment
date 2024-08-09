@@ -40,7 +40,7 @@ app.conf.beat_schedule = {
 
     'send-email-reminder': {
         'task': 'reminder.tasks.send_email_reminder',
-        'schedule': timedelta(seconds=50)
+        'schedule': timedelta(seconds=60)
     }
 }
 
