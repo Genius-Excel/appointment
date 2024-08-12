@@ -23,3 +23,23 @@ class CradenMooreClients(models.Model):
 
     def __str__(self):
         return f"{self.first_name} - {self.mobile_number} {self.meeting_link[:5]}"
+
+    
+class EnishBookings(models.Model):
+    """
+        This model class is defined for Enish
+        Restaurant with Vapi AI Voice Assistants.
+        All fields to be sent to this API endpoint
+        are all string values (Reason for using CharField in all cases.)
+    """
+
+
+    first_name = models.CharField(max_length=250)
+    mobile_number = models.CharField(max_length=100)
+    restaurant_location = models.CharField(max_length=250)
+    number_of_guests = models.CharField(max_length=150)
+    appointment_date = models.CharField(max_length=150)
+
+
+    def __str__(self):
+        return f"{self.first_name} -- Location:{self.restaurant_location[:6]} -- {self.number_of_guests}"
