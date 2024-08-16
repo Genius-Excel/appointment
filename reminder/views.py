@@ -35,26 +35,9 @@ class CreateEnishBooking(generics.CreateAPIView):
     def perform_create(self, serializer):
         user = serializer.save()
 
-        appointment_str = user.appointment_date
-
-        try:
-            appointment_dt = datetime.fromisoformat(appointment_str)
-        except ValueError:
-            appointment_dt = None
-
-        if appointment_dt:
-            date_part = appointment_dt.strftime('%A, %B %d, %Y')
-            time_part = appointment_dt.strftime('%I:%M%p')
-            time_part = time_part.lstrip('0')
-        else:
-            date_part = 'N/A'
-            time_part = 'N/A'
-
-        
-
         SMS_sender = "Enish"
         SMS_message = f"Hello {user.first_name},\n\n" \
-                      f"Your table reservation at {user.restaurant_location} for {user.number_of_guests} guests is confirmed for {date_part} at {time_part}.\n\n" \
+                      f"Your table reservation at {user.restaurant_location} for {user.number_of_guests} guests is confirmed for {user.appointment_date}\n" \
                       f"We look forward to welcoming you!."
         
         SMS_recipient = user.mobile_number
