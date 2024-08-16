@@ -41,8 +41,8 @@ class CreateEnishBooking(generics.CreateAPIView):
                       f"We look forward to welcoming you!."
         
         SMS_recipient = user.mobile_number
-        # custom_sms_sender(SMS_sender, SMS_recipient, SMS_message)
-        custom_email_sender(settings.TEST_EMAIL, "Enish Testing", SMS_message, "Enish Restaurant")
+        custom_sms_sender(SMS_sender, SMS_recipient, SMS_message)
+        # custom_email_sender(settings.TEST_EMAIL, "Enish Testing", SMS_message, "Enish Restaurant")
 
 
        
