@@ -111,6 +111,8 @@ timezone = 'UTC'
 # CELERY BEAT
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
+# TEST EMAIL
+TEST_EMAIL = config("TEST_EMAIL")
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
