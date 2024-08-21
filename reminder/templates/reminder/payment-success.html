@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment {{ status }}</title>
+</head>
+<body>
+    <h1>Payment {{ status }}!</h1>
+    <p>Redirecting back to the chatbot...</p>
+    <script>
+        setTimeout(function() {
+            window.location.href = "https://creator.voiceflow.com/prototype/66b92af506efa45a4651f3f0";  // Replace with your Voiceflow callback URL
+        }, 3000);  // 3 seconds delay before redirect
+    </script>
+</body>
+</html>
