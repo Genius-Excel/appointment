@@ -3,9 +3,15 @@ from datetime import datetime
 from rest_framework import generics
 from .models import ClientAppointment, CradenMooreClients, EnishBookings
 from .serializers import ClientAppointmentSerializer, CradenMooreClientsSerializer, EnishBookingsSerializer
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from .utils import custom_email_sender, custom_sms_sender
 from django.conf import settings
+import stripe 
+import json
+
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 # Create your views here.
 
@@ -45,12 +51,66 @@ class CreateEnishBooking(generics.CreateAPIView):
         # custom_email_sender(settings.TEST_EMAIL, "Enish Testing", SMS_message, "Enish Restaurant")
 
 
-       
+
+
+# IMPLEMENT STRIPE PAYMENT FOR ENISH
+@csrf_exempt
+def create_checkout_session(request):
+    try:
+        session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=[{
+                'price_data': {
+                    'currency': 'gbp',
+                    'product_data': {
+                        'name': 'Enish Table Reservation Deposit',
+                    },
+                    'unit_amount': 5000,  # 50.00 pounds
+                },
+                'quantity': 1,
+            }],
+            mode='payment',
+            success_url='https://oawosile.pythonanywhere.com/',
+            cancel_url='https://oawosile.pythonanywhere.com/',
+        )
+
+
+        return JsonResponse({'sessionid': session.id, 'url': session.url})
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=400)
     
 
+@csrf_exempt
+def confirm_payment(request, stripe_session_id):
+    try:
+        session_status = None
+        session = stripe.checkout.Session.retrieve(stripe_session_id)
+        payment_intent_id = session.payment_intent
+        session_payment_status = session.payment_status
 
+        print(payment_intent_id)
+        print(session_payment_status)
 
+        return JsonResponse({'payment_status': session_payment_status, 'payment_intent_id': payment_intent_id, 'session': session})
+    except Exception as e:
+        return JsonResponse({"Erro": str(e)})
+
+   
+def sample(request):
+    session_id = request.GET.get('session_id')
+    return render(request, 'reminder/sample.html')
+
+def payment_success(request):
+    session_id = request.GET.get('session_id')
+    # You can verify the session and perform actions like updating your database here
+    return render(request, 'reminder/payment-success.html')
+
+def payment_cancelled(request):
+    return render(request, 'reminder/payment-success.html')
+
+       
+    
 def home(request):
-    return HttpResponse("The number has been sumed")
+    return render(request, 'reminder/home.html')
 
 
