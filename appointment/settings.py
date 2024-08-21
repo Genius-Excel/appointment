@@ -58,7 +58,7 @@ ROOT_URLCONF = 'appointment.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ BASE_DIR / 'templates' ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -113,6 +113,9 @@ CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 # TEST EMAIL
 TEST_EMAIL = config("TEST_EMAIL")
+
+# STRIPE CONFIGURATION
+STRIPE_SECRET_KEY = config("STRIPE_SECRET_KEY")
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
