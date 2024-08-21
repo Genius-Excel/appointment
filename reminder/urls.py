@@ -7,4 +7,10 @@ urlpatterns = [
     path('api/craden-moore-client/', views.CreateCradenMooreClient.as_view(), name='craden-moore-client'),
     path('api/enish-create-booking/', views.CreateEnishBooking.as_view(), name='enish-creating-booking'),
 
+    # STRIPE PATHS
+    path('create-checkout-session/', views.create_checkout_session, name='create_checkout_session'),
+    path('payment-success/', views.payment_success, name='payment_success'),
+    path('payment-cancelled/', views.payment_cancelled, name='payment_cancelled'),
+    path('confirm-payment/<str:stripe_session_id>/', views.confirm_payment, name='confirm-payment'),
+
 ]
