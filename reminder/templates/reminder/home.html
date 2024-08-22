@@ -9,19 +9,44 @@
     <h1>Hello</h1>
 
     <h2>Multipurpose Automation App.</h2>
-    
+
     <script type="text/javascript">
-        (function(d, t) {
-            var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-            v.onload = function() {
-              window.voiceflow.chat.load({
-                verify: { projectID: '66b92af506efa45a4651f3ef' },
-                url: 'https://general-runtime.voiceflow.com',
-                versionID: 'production'
-              });
-            }
-            v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
-        })(document, 'script');
-      </script>
+      (function(d, t) {
+        var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+        v.onload = function() {
+          window.voiceflow.chat.load({
+            verify: { projectID: '66b92af506efa45a4651f3ef' },
+            url: 'https://general-runtime.voiceflow.com',
+            versionID: 'production'
+          });
+    
+          // Automatically open the chatbot based on session status
+          if (sessionStorage.getItem('chatbotOpened') === 'true') {
+            window.voiceflow.chat.open();
+          }
+        }
+        v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; 
+        v.type = "text/javascript"; 
+        s.parentNode.insertBefore(v, s);
+      })(document, 'script');
+    </script>
+    
+    <script>
+      window.addEventListener('load', function() {
+        // Check if the chatbot has not been opened before
+        if (!sessionStorage.getItem('chatbotOpened')) {
+          // Automatically open the chatbot
+          window.voiceflow.chat.open();
+          // Mark the chatbot as opened in session storage
+          sessionStorage.setItem('chatbotOpened', 'true');
+        }
+      });
+    
+      // Optionally, you can add an event listener to close the chatbot and remove the session storage item if needed
+      window.addEventListener('beforeunload', function() {
+        sessionStorage.removeItem('chatbotOpened');
+      });
+    </script>
+    
 </body>
 </html>
