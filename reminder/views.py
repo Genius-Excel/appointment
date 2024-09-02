@@ -55,7 +55,7 @@ class CreateEnishBooking(generics.CreateAPIView):
 
 # IMPLEMENT STRIPE PAYMENT FOR ENISH
 @csrf_exempt
-def create_checkout_session(request):
+def create_checkout_session(request, amount):
     try:
         session = stripe.checkout.Session.create(
             payment_method_types=['card'],
@@ -65,7 +65,7 @@ def create_checkout_session(request):
                     'product_data': {
                         'name': 'Enish Table Reservation Deposit',
                     },
-                    'unit_amount': 5000,  # 50.00 pounds
+                    'unit_amount': amount,  # 50.00 pounds
                 },
                 'quantity': 1,
             }],
