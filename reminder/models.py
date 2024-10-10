@@ -43,3 +43,14 @@ class EnishBookings(models.Model):
 
     def __str__(self):
         return f"{self.first_name} -- Location:{self.restaurant_location[:6]} -- {self.number_of_guests}"
+
+
+
+class LaundryClinicCustomerQuery(models.Model):
+    first_name = models.CharField(max_length=150)
+    last_name = models.CharField(max_length=150)
+    customer_query_message = models.TextField()
+    ai_email_response = models.TextField()
+    phone_number = models.CharField(max_length=50, null=True)
+    email_address = models.EmailField()
+
