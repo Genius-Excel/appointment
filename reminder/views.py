@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from datetime import datetime
 from rest_framework import generics
-from .models import ClientAppointment, CradenMooreClients, EnishBookings
-from .serializers import ClientAppointmentSerializer, CradenMooreClientsSerializer, EnishBookingsSerializer
+from .models import ClientAppointment, CradenMooreClients, EnishBookings, LaundryClinicCustomerQuery
+from .serializers import ClientAppointmentSerializer, CradenMooreClientsSerializer, EnishBookingsSerializer, LaundryClinicCustomerQuerySerializer
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .utils import custom_email_sender, custom_sms_sender
@@ -51,6 +51,21 @@ class CreateEnishBooking(generics.CreateAPIView):
         # custom_email_sender(settings.TEST_EMAIL, "Enish Testing", SMS_message, "Enish Restaurant")
 
 
+## API View for sending Apology Email to customer for Laundry Clinic
+class CreateLaundryClinicEmailApology(generics.CreateAPIView):
+    queryset = LaundryClinicCustomerQuery.objects.all()
+    serializer_class = LaundryClinicCustomerQuerySerializer
+
+    def perform_create(self, serializer):
+        customer = serializer.save()
+
+
+        email_sender = 'Laundry Clinic'
+        email_subject = 'Follow up on service complaints.'
+        email_message = customer.ai_email_response
+        email_recipient = customer.email_address
+
+        custom_email_sender(email_recipient, email_subject, email_message, email_sender)
 
 
 # IMPLEMENT STRIPE PAYMENT FOR ENISH
