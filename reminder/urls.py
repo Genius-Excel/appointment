@@ -13,4 +13,8 @@ urlpatterns = [
     path('payment-cancelled/', views.payment_cancelled, name='payment_cancelled'),
     path('confirm-payment/<str:stripe_session_id>/', views.confirm_payment, name='confirm-payment'),
 
+    # Laundry Clinic PATHS
+    path('send-customer-apology', views.CreateLaundryClinicEmailApology.as_view(), name='send-customer-apology'),
+
+
 ]
