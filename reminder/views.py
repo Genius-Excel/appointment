@@ -68,10 +68,10 @@ class CreateLaundryClinicEmailApology(generics.CreateAPIView):
 
         # determine cusomer language for SMS:
         if customer.language_mode == "English":
-            english_sms_message = f"Dear {customer.first_name}, one of our team members has responded to your service complaint via email. Please check your inbox for a tailored response. Thank you for your patience."
+            english_sms_message = f"Dear {customer.first_name}, your complaint has been passed to one of our team members to deal with and an email acknowledgement has also been sent to you. We will contact you shortly with a resolution. Thank you for choosing Laundry Clinic."
             custom_sms_sender('Laundry Clinic', customer.phone_number, english_sms_message)
         else:
-            spanish_sms_message = f"Estimado/a {customer.first_name}, uno de nuestros miembros del equipo ha respondido a su queja de servicio por correo electrónico. Por favor, revise su bandeja de entrada para una respuesta personalizada. Gracias por su paciencia."
+            spanish_sms_message = f"Estimado {customer.first_name}, su queja se pasó a uno de los miembros de nuestro equipo para que la trate y también se le envió un acuse de recibo por correo electrónico. Nos comunicaremos con usted en breve con una resolución. Gracias por elegir Laundry Clinic."
             custom_sms_sender('Laundry Clinic', customer.phone_number, spanish_sms_message)
             
 
