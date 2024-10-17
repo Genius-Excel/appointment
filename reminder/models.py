@@ -46,6 +46,11 @@ class EnishBookings(models.Model):
 
 
 
+language_options = (
+    ("English", "English"),
+    ("Spanish", "Spanish"),
+)
+
 class LaundryClinicCustomerQuery(models.Model):
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
@@ -53,4 +58,5 @@ class LaundryClinicCustomerQuery(models.Model):
     ai_email_response = models.TextField()
     phone_number = models.CharField(max_length=50, null=True)
     email_address = models.EmailField()
+    language_mode = models.CharField(max_length=50, choices=language_options, default="English", null=True)
 
