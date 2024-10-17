@@ -59,13 +59,21 @@ class CreateLaundryClinicEmailApology(generics.CreateAPIView):
     def perform_create(self, serializer):
         customer = serializer.save()
 
-
         email_sender = 'Laundry Clinic'
         email_subject = 'Follow up on service complaints.'
         email_message = customer.ai_email_response
         email_recipient = customer.email_address
 
         custom_email_sender(email_recipient, email_subject, email_message, email_sender)
+
+        # determine cusomer language for SMS:
+        if customer.language_mode == "English":
+            english_sms_message = f"Dear {customer.first_name}, one of our team members has responded to your service complaint via email. Please check your inbox for a tailored response. Thank you for your patience."
+            custom_sms_sender('Laundry Clinic', customer.phone_number, english_sms_message)
+        else:
+            spanish_sms_message = f"Estimado/a {customer.first_name}, uno de nuestros miembros del equipo ha respondido a su queja de servicio por correo electrónico. Por favor, revise su bandeja de entrada para una respuesta personalizada. Gracias por su paciencia."
+            custom_sms_sender('Laundry Clinic', customer.phone_number, spanish_sms_message)
+            
 
 
 # IMPLEMENT STRIPE PAYMENT FOR ENISH
