@@ -62,7 +62,7 @@ class LaundryClinicCustomerQuery(models.Model):
 
 
 class LaundryClinicEnglishSpeakingCustomerQuery(models.Model):
-    """This is the model class of Laundry Clinic English Spakers
+    """This is the model class of Laundry Clinic English Speakers
     """
 
     first_name = models.CharField(max_length=100, null=True)
@@ -79,3 +79,24 @@ class LaundryClinicEnglishSpeakingCustomerQuery(models.Model):
 
 
 
+
+
+class LaundryClinicSpanishSpeakingCustomerQuery(models.Model):
+    """This is the model class of Laundry Clinic Spanish Speakers
+    """
+
+    first_name = models.CharField(max_length=100, null=True)
+    last_name = models.CharField(max_length=100)
+    email_address = models.EmailField()
+    phone_number = models.CharField(max_length=50, null=True)
+    customer_query_message_english = models.TextField(null=True)
+    customer_query_message_spanish = models.TextField(null=True)
+    customer_comments_english = models.TextField(null=True)
+    customer_comments_spanish = models.TextField(null=True)
+    ai_assistant_response_english = models.TextField(null=True)
+    ai_assistant_response_spanish = models.TextField(null=True)
+    laundry_event_details_english = models.TextField(null=True)
+    laundry_event_details_spanish = models.TextField(null=True)
+    location = models.CharField(max_length=150, null=True)
+    timestamp = models.DateTimeField()
+    ai_email_response_spanish = models.TextField()
