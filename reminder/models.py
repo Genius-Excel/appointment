@@ -60,3 +60,22 @@ class LaundryClinicCustomerQuery(models.Model):
     email_address = models.EmailField()
     language_mode = models.CharField(max_length=50, choices=language_options, default="English", null=True)
 
+
+class LaundryClinicEnglishSpeakingCustomerQuery(models.Model):
+    """This is the model class of Laundry Clinic English Spakers
+    """
+
+    first_name = models.CharField(max_length=100, null=True)
+    last_name = models.CharField(max_length=100)
+    email_address = models.EmailField()
+    customer_query_message = models.TextField()
+    customer_comments = models.TextField()
+    ai_assistant_response = models.TextField()
+    laundry_event_details = models.TextField()
+    location = models.CharField(max_length=150)
+    timestamp = models.DateTimeField()
+    ai_email_response = models.TextField()
+    phone_number = models.CharField(max_length=50, null=True)
+
+
+
