@@ -65,7 +65,7 @@ class LaundryClinicEnglishSpeakingCustomerQuery(models.Model):
     """This is the model class of Laundry Clinic English Speakers
     """
 
-    first_name = models.CharField(max_length=100, null=True)
+    first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email_address = models.EmailField()
     customer_query_message = models.TextField()
@@ -75,7 +75,7 @@ class LaundryClinicEnglishSpeakingCustomerQuery(models.Model):
     location = models.CharField(max_length=150)
     timestamp = models.DateTimeField()
     ai_email_response = models.TextField()
-    phone_number = models.CharField(max_length=50, null=True)
+    phone_number = models.CharField(max_length=50)
 
 
 
@@ -84,7 +84,7 @@ class LaundryClinicEnglishSpeakingCustomerQuery(models.Model):
 class LaundryClinicSpanishSpeakingCustomerQuery(models.Model):
     """This is the model class of Laundry Clinic Spanish Speakers
     """
-
+    spreadsheet_row = models.IntegerField(null=True)
     first_name = models.CharField(max_length=100, null=True)
     last_name = models.CharField(max_length=100)
     email_address = models.EmailField()
