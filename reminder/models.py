@@ -99,4 +99,4 @@ class LaundryClinicSpanishSpeakingCustomerQuery(models.Model):
     laundry_event_details_spanish = models.TextField(null=True)
     location = models.CharField(max_length=150, null=True)
     timestamp = models.DateTimeField()
-    ai_email_response_spanish = models.TextField()
+    ai_email_response_spanish = models.TextField(null=True)
