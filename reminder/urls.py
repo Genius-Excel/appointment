@@ -14,7 +14,11 @@ urlpatterns = [
     path('confirm-payment/<str:stripe_session_id>/', views.confirm_payment, name='confirm-payment'),
 
     # Laundry Clinic PATHS
-    path('send-customer-apology', views.CreateLaundryClinicEmailApology.as_view(), name='send-customer-apology'),
+    path('api/send-customer-apology', views.CreateLaundryClinicEmailApology.as_view(), name='send-customer-apology'),
+    path('api/create-english-customer-query', views.CreateEnglishSpeakingCustomersQuery.as_view(), name='english-customers'),
+    path('api/create-spanish-customer-query', views.CreateSpanishSpeakingCustomersQuery.as_view(), name='spanish-customers'),
+    path('api/update-spanish-customer-query', views.UpdateSpanishSpeakingcustomersQuery.as_view(), name='update-spanish-customers'),
+
 
 
 ]
