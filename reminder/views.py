@@ -1,8 +1,12 @@
 from django.shortcuts import render
 from datetime import datetime
 from rest_framework import generics
-from .models import ClientAppointment, CradenMooreClients, EnishBookings, LaundryClinicCustomerQuery
-from .serializers import ClientAppointmentSerializer, CradenMooreClientsSerializer, EnishBookingsSerializer, LaundryClinicCustomerQuerySerializer
+from .models import ( ClientAppointment, CradenMooreClients, EnishBookings, LaundryClinicCustomerQuery,
+                     LaundryClinicEnglishSpeakingCustomerQuery, LaundryClinicSpanishSpeakingCustomerQuery)
+from .serializers import ( ClientAppointmentSerializer, CradenMooreClientsSerializer, 
+                          EnishBookingsSerializer, LaundryClinicCustomerQuerySerializer,
+                          LaundryClinicEnglishSpeakingCustomerQuerySerializer,
+                          LaundryClinicSpanishSpeakingCustomerQuerySerializer)
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .utils import custom_email_sender, custom_sms_sender
@@ -75,6 +79,22 @@ class CreateLaundryClinicEmailApology(generics.CreateAPIView):
             custom_sms_sender('Laundry Clinic', customer.phone_number, spanish_sms_message)
             
 
+
+class CreateEnglishSpeakingCustomersQuery(generics.CreateAPIView):
+    queryset = LaundryClinicEnglishSpeakingCustomerQuery.objects.all()
+    serializer_class = LaundryClinicEnglishSpeakingCustomerQuerySerializer
+
+
+
+class CreateSpanishSpeakingCustomersQuery(generics.CreateAPIView):
+    queryset = LaundryClinicSpanishSpeakingCustomerQuery.objects.all()
+    serializer_class = LaundryClinicSpanishSpeakingCustomerQuerySerializer
+
+
+class UpdateSpanishSpeakingcustomersQuery(generics.RetrieveUpdateAPIView):
+    queryset = LaundryClinicSpanishSpeakingCustomerQuery.objects.all()
+    serializer_class = LaundryClinicSpanishSpeakingCustomerQuerySerializer
+    lookup_field = 'spreadsheet_row'
 
 # IMPLEMENT STRIPE PAYMENT FOR ENISH
 @csrf_exempt
