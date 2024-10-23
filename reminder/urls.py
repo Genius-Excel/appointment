@@ -18,6 +18,11 @@ urlpatterns = [
     path('api/create-english-customer-query', views.CreateEnglishSpeakingCustomersQuery.as_view(), name='english-customers'),
     path('api/create-spanish-customer-query', views.CreateSpanishSpeakingCustomersQuery.as_view(), name='spanish-customers'),
     path('api/update-spanish-customer-query/<int:spreadsheet_row>', views.UpdateSpanishSpeakingcustomersQuery.as_view(), name='update-spanish-customers'),
+    
+    path('list-english-customers/', views.list_english_customers, name='list-english-customers'),
+    path('list-spanish-customers/', views.list_spanish_customers, name='list-spanish-customers'),
+
+    
 
 
 
