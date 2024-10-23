@@ -55,6 +55,8 @@ class CreateEnishBooking(generics.CreateAPIView):
         # custom_email_sender(settings.TEST_EMAIL, "Enish Testing", SMS_message, "Enish Restaurant")
 
 
+## Laundry Clinic View logic
+
 ## API View for sending Apology Email to customer for Laundry Clinic
 class CreateLaundryClinicEmailApology(generics.CreateAPIView):
     queryset = LaundryClinicCustomerQuery.objects.all()
@@ -95,6 +97,23 @@ class UpdateSpanishSpeakingcustomersQuery(generics.RetrieveUpdateAPIView):
     queryset = LaundryClinicSpanishSpeakingCustomerQuery.objects.all()
     serializer_class = LaundryClinicSpanishSpeakingCustomerQuerySerializer
     lookup_field = 'spreadsheet_row'
+
+
+def list_english_customers(request):
+    customers = LaundryClinicEnglishSpeakingCustomerQuery.objects.all()
+
+    context = {'customers': customers}
+    return render(request, 'reminder/english-customer.html', context)
+
+
+def list_spanish_customers(request):
+    customers = LaundryClinicSpanishSpeakingCustomerQuery.objects.all()
+
+    context = {'customers': customers}
+    return render(request, 'reminder/spanish-customer.html', context)
+
+## End Laundry Clinic View Logic
+
 
 # IMPLEMENT STRIPE PAYMENT FOR ENISH
 @csrf_exempt
