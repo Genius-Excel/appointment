@@ -29,22 +29,24 @@
 
         <tbody>
             {% for customer in customers %}
-            <td>{{customer.id}}</td>
-            <td>{{customer.first_name}}</td>
-            <td>{{customer.last_name}}</td>
-            <td>{{customer.email_address}}</td>
-            <td>{{customer.phone_number}}</td>
-            <td>{{customer.customer_query_message_english}}</td>
-            <td>{{customer.customer_query_message_spanish}}</td>
-            <td>{{customer.customer_comments_english}}</td>
-            <td>{{customer.customer_comments_spanish}}</td>
-            <td>{{customer.ai_assistant_response_english}}</td>
-            <td>{{customer.ai_assistant_response_spanish}}</td>
-            <td>{{customer.laundry_event_details_english}}</td>
-            <td>{{customer.laundry_event_details_spanish}}</td>
-            <td>{{customer.timestamp}}</td>
-            <td>{{customer.location}}</td>
-            <td>{{customer.ai_email_response_spanish}}</td>
+            <tr>
+                <td>{{customer.id}}</td>
+                <td>{{customer.first_name}}</td>
+                <td>{{customer.last_name}}</td>
+                <td>{{customer.email_address}}</td>
+                <td>{{customer.phone_number}}</td>
+                <td>{{customer.customer_query_message_english}}</td>
+                <td>{{customer.customer_query_message_spanish}}</td>
+                <td>{{customer.customer_comments_english}}</td>
+                <td>{{customer.customer_comments_spanish}}</td>
+                <td>{{customer.ai_assistant_response_english}}</td>
+                <td>{{customer.ai_assistant_response_spanish}}</td>
+                <td>{{customer.laundry_event_details_english}}</td>
+                <td>{{customer.laundry_event_details_spanish}}</td>
+                <td>{{customer.timestamp}}</td>
+                <td>{{customer.location}}</td>
+                <td>{{customer.ai_email_response_spanish}}</td>
+            </tr>
             {% endfor customers %}
         </tbody>
     </table>

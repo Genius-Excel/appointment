@@ -25,18 +25,20 @@
 
         <tbody>
             {% for customer in customers %}
-            <td>{{customer.id}}</td>
-            <td>{{customer.first_name}}</td>
-            <td>{{customer.last_name}}</td>
-            <td>{{customer.email_address}}</td>
-            <td>{{customer.phone_number}}</td>
-            <td>{{customer.customer_query_message}}</td>
-            <td>{{customer.customer_comments}}</td>
-            <td>{{customer.ai_assistant_response}}</td>
-            <td>{{customer.laundry_event_details}}</td>
-            <td>{{customer.timestamp}}</td>
-            <td>{{customer.location}}</td>
-            <td>{{customer.ai_email_response}}</td>
+            <tr>
+                <td>{{customer.id}}</td>
+                <td>{{customer.first_name}}</td>
+                <td>{{customer.last_name}}</td>
+                <td>{{customer.email_address}}</td>
+                <td>{{customer.phone_number}}</td>
+                <td>{{customer.customer_query_message}}</td>
+                <td>{{customer.customer_comments}}</td>
+                <td>{{customer.ai_assistant_response}}</td>
+                <td>{{customer.laundry_event_details}}</td>
+                <td>{{customer.timestamp}}</td>
+                <td>{{customer.location}}</td>
+                <td>{{customer.ai_email_response}}</td>
+            </tr>
             {% endfor customers %}
         </tbody>
     </table>
