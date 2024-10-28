@@ -129,10 +129,7 @@ class CreateCeraniEmail(generics.CreateAPIView):
         booking_name = user_response.booking_name
         selected_image = user_response.selected_image
 
-        email_message = f"""Booking ID:{booking_id}
-                            Booking Name:{booking_name}
-                            Selected Image:{selected_image} 
-                        """
+        email_message = f"""Booking ID:{booking_id} Booking Name: {booking_name} Selected Image: {selected_image}"""
         email_subject = 'Selected Image For Tufting Activity.'
         custom_email_sender(settings.CERACERNI_EMAIL, email_subject, email_message, 'Tros Technologies')
 
