@@ -2,11 +2,13 @@ from django.shortcuts import render
 from datetime import datetime
 from rest_framework import generics
 from .models import ( ClientAppointment, CradenMooreClients, EnishBookings, LaundryClinicCustomerQuery,
-                     LaundryClinicEnglishSpeakingCustomerQuery, LaundryClinicSpanishSpeakingCustomerQuery)
+                     LaundryClinicEnglishSpeakingCustomerQuery, LaundryClinicSpanishSpeakingCustomerQuery,
+                     CeraCerni, )
 from .serializers import ( ClientAppointmentSerializer, CradenMooreClientsSerializer, 
                           EnishBookingsSerializer, LaundryClinicCustomerQuerySerializer,
                           LaundryClinicEnglishSpeakingCustomerQuerySerializer,
-                          LaundryClinicSpanishSpeakingCustomerQuerySerializer)
+                          LaundryClinicSpanishSpeakingCustomerQuerySerializer,
+                          CercerniSerializer)
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .utils import custom_email_sender, custom_sms_sender
@@ -114,6 +116,28 @@ def list_spanish_customers(request):
 
 ## End Laundry Clinic View Logic
 
+
+## Ceracerni
+
+class CreateCeraniEmail(generics.CreateAPIView):
+    queryset = CeraCerni.objects.all()
+    serializer_class = CercerniSerializer
+
+    def perform_create(self, serializer):
+        user_response = serializer.save()
+        booking_id = user_response.booking_id
+        booking_name = user_response.booking_name
+        selected_image = user_response.selected_image
+
+        email_message = f"""Booking ID:{booking_id}
+                            Booking Name:{booking_name}
+                            Selected Image:{selected_image} 
+                        """
+        email_subject = 'Selected Image For Tufting Activity.'
+        custom_email_sender(settings.CERACERNI_EMAIL, email_subject, email_message, 'Tros Technologies')
+
+
+## End Ceracerni
 
 # IMPLEMENT STRIPE PAYMENT FOR ENISH
 @csrf_exempt
