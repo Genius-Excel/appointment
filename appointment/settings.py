@@ -112,7 +112,7 @@ timezone = 'UTC'
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 # TEST EMAIL
-TEST_EMAIL = config("TEST_EMAIL")
+CERACERNI_EMAIL = config("CERACERNI_EMAIL")
 
 # STRIPE CONFIGURATION
 STRIPE_SECRET_KEY = config("STRIPE_SECRET_KEY")
