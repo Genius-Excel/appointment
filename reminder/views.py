@@ -142,14 +142,8 @@ class CreateCeraniEmail(generics.CreateAPIView):
             'image_url': image_url,
         }
 
+        send_email_with_html_template(template_file, context, email_address, email_subject, email_sender)
 
-        send_email_with_html_template(template_file, context, email_address, 
-                                      email_subject, email_sender
-            )
-
-        # email_message = f"""Booking ID:{booking_id} Booking Name: {booking_name} Selected Image: {selected_image} Image Url: {image_url}"""
-        # email_subject = 'Selected Image For Tufting Activity.'
-        # custom_email_sender(settings.CERACERNI_EMAIL, email_subject, email_message, 'Tros Technologies')
 
 
 ## End Ceracerni
