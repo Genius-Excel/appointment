@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .email-header {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .email-body {
+            padding: 20px 0;
+        }
+        .email-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .email-table th, .email-table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        .email-table th {
+            background-color: #f4f4f4;
+            color: #333;
+            font-weight: bold;
+        }
+        .email-table td {
+            color: #555;
+        }
+        .email-footer {
+            text-align: center;
+            color: #888;
+            font-size: 12px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        .image-container {
+            text-align: center;
+            padding: 20px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">Booking Confirmation</div>
+        
+        <div class="email-body">
+            <p>Dear Customer,</p>
+            <p>Thank you for your booking! Here are your booking details:</p>
+            
+            <table class="email-table">
+                <tr>
+                    <th>Booking ID</th>
+                    <td>{{booking_id}}</td>
+                </tr>
+                <tr>
+                    <th>Booking Name</th>
+                    <td>{{booking_name}}</td>
+                </tr>
+                <tr>
+                    <th>Selected Image Name</th>
+                    <td>{{selected_image}}</td>
+                </tr>
+            </table>
+            
+            <div class="image-container">
+                <img src="{{image_url}}" alt="Selected Image">
+            </div>
+            
+            <p>We look forward to serving you. If you have any questions, feel free to contact us.</p>
+        </div>
+        
+        <div class="email-footer">
+            &copy; 2024 Company Name | All rights reserved.
+        </div>
+    </div>
+</body>
+</html>
