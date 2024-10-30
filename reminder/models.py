@@ -107,4 +107,4 @@ class CeraCerni(models.Model):
     booking_id = models.CharField(max_length=50, null=True)
     booking_name = models.CharField(max_length=100, null=True)
     selected_image = models.CharField(max_length=150, null=True)
-    image_url = models.CharField(max_length=150, null=True)
+    image_url = models.CharField(max_length=500, null=True)
