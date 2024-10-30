@@ -11,7 +11,7 @@ from .serializers import ( ClientAppointmentSerializer, CradenMooreClientsSerial
                           CercerniSerializer)
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .utils import custom_email_sender, custom_sms_sender
+from .utils import custom_email_sender, custom_sms_sender, send_email_with_html_template
 from django.conf import settings
 import stripe 
 import json
@@ -129,10 +129,27 @@ class CreateCeraniEmail(generics.CreateAPIView):
         booking_name = user_response.booking_name
         selected_image = user_response.selected_image
         image_url = user_response.image_url
+        email_address = settings.CERACERNI_EMAIL
+        email_subject = 'Booking Confirmation With Selected Image'
+        email_sender = 'Tros Technologies'
 
-        email_message = f"""Booking ID:{booking_id} Booking Name: {booking_name} Selected Image: {selected_image} Image Url: {image_url}"""
-        email_subject = 'Selected Image For Tufting Activity.'
-        custom_email_sender(settings.CERACERNI_EMAIL, email_subject, email_message, 'Tros Technologies')
+        # Template details
+        template_file = 'templates/reminder/ceracerni-email-notification.html'
+        context = {
+            'booking_id': booking_id,
+            'booking_name': booking_name,
+            'selected_image': selected_image,
+            'image_url': image_url,
+        }
+
+
+        send_email_with_html_template(template_file, context, email_address, 
+                                      email_subject, email_sender
+            )
+
+        # email_message = f"""Booking ID:{booking_id} Booking Name: {booking_name} Selected Image: {selected_image} Image Url: {image_url}"""
+        # email_subject = 'Selected Image For Tufting Activity.'
+        # custom_email_sender(settings.CERACERNI_EMAIL, email_subject, email_message, 'Tros Technologies')
 
 
 ## End Ceracerni
