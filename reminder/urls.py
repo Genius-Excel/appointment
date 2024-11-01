@@ -21,6 +21,7 @@ urlpatterns = [
     
     path('list-english-customers/', views.list_english_customers, name='list-english-customers'),
     path('list-spanish-customers/', views.list_spanish_customers, name='list-spanish-customers'),
+    path('laundry-index', views.laundry_clinic_dashboard_test, name='laundry-index'),
 
 
     # Ceracerni
