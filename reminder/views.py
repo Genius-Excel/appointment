@@ -116,7 +116,10 @@ def list_spanish_customers(request):
 
 
 def laundry_clinic_dashboard_test(request):
-    context = {}
+    customers = LaundryClinicSpanishSpeakingCustomerQuery.objects.all()
+
+    context = {'customers': customers}
+
     return render(request, 'reminder/laundry-index.html', context)
 
 ## End Laundry Clinic View Logic
