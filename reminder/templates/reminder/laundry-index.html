@@ -1,10 +1,105 @@
 {% extends 'laundry-base.html' %}
+{% load static %}
 
-<!-- dashboard inner -->
+{% block title %} Laundry Clinic {% endblock title %}
+
+
 {% block dashboard_inner %}
-            
-<h1>Heeeeeeyeyy</h1>
 
+              <!-- dashboard inner -->
+              <div class="midde_cont">
+               <div class="container-fluid">
+                  <div class="row column_title">
+                     <div class="col-md-12">
+                        <div class="page_title">
+                           <h2>{{request.user.company_name}} visitor log</h2>
+                        </div>
+                     </div>
+                  </div>
 
-{% endblock dashboard_inner  %}
+<!--end to be removed-->
+ <div class="row">
+     <div class="col-md-12">
+       <div class="table-responsive">
+         <table class="table table-striped table-hover">
+             <thead class="table-light">
+               <tr>
+                 <th scope="col">#</th>
+                 <th scope="col">First Name</th>
+                 <th scope="col">Last Name</th>
+                 <th scope="col">Email Address</th>
+                 <th scope="col">Phone Number</th>   
+                 <th scope="col">Complaints (English)</th>  
+                 <th scope="col">Complaints (Spanish)</th>                   
+                 <th scope="col">Comments (English) </th>
+                 <th scope="col">Comments (Spanish) </th>
+                 <th scope="col">Laundry Event Details (English) </th>
+                 <th scope="col">Laundry Event Details (Spanish) </th>
+                 <th scope="col">Timestamp</th>
+                 <th scope="col">Laundry Location</th>
+                 <th scope="col">AI Email Response</th>
+               </tr>
+             </thead>
+             <tbody>
+             {% for customer in customers %}
+               <tr>
+                 <th scope="row"> {{ customers.start_index|add:forloop.counter0 }} </th>
+                <td>{{customer.first_name}}</td>
+                <td>{{customer.last_name}}</td>
+                <td>{{customer.email_address}}</td>
+                <td>{{customer.phone_number}}</td>
+                <td>{{customer.customer_query_message_english}}</td>
+                <td>{{customer.customer_query_message_spanish}}</td>
+                <td>{{customer.customer_comments_english}}</td>
+                <td>{{customer.customer_comments_spanish}}</td>
+                <td>{{customer.ai_assistant_response_english}}</td>
+                <td>{{customer.ai_assistant_response_spanish}}</td>
+                <td>{{customer.laundry_event_details_english}}</td>
+                <td>{{customer.laundry_event_details_spanish}}</td>
+                <td>{{customer.timestamp}}</td>
+                <td>{{customer.location}}</td>
+                <td>{{customer.ai_email_response_spanish}}</td>
+               </tr>
+             {% endfor %}
+             </tbody>
+           </table>
+       </div>
+     </div>
+ </div>
+</div>
+
+<!-- Pagination links -->
+<div class="pagination">
+<span class="step-links">
+ {% if visitor_obj.has_previous %}
+     <a href="?page=1">&laquo; first</a>
+     <a href="?page={{ visitor_obj.previous_page_number }}">previous</a>
+ {% endif %}
+
+ <span class="current">
+     Page {{ visitor_obj.number }} of {{ visitor_obj.paginator.num_pages }}.
+ </span>
+
+ {% if visitor_obj.has_next %}
+     <a href="?page={{ visitor_obj.next_page_number }}">next</a>
+     <a href="?page={{ visitor_obj.paginator.num_pages }}">last &raquo;</a>
+ {% endif %}
+</span>
+</div>
+
+</div>
+<!-- footer -->
+<div class="container-fluid">
+<div class="footer">
+<a href="https://trostechnologies.com/live/portfolio">
+<p>Developed by Trostechnologies</p>
+</a>
+</div>
+</div>
+</div>
 <!-- end dashboard inner -->
+
+{% endblock dashboard_inner %}
+
+
+{% block scripts %}   <script src="{% static 'js/visitor_page_reload.js' %}"></script>   {% endblock scripts %}
