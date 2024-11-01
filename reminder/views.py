@@ -114,6 +114,11 @@ def list_spanish_customers(request):
     context = {'customers': customers}
     return render(request, 'reminder/spanish-customer.html', context)
 
+
+def laundry_clinic_dashboard_test(request):
+    context = {}
+    return render(request, 'reminder/laundry-index.html', context)
+
 ## End Laundry Clinic View Logic
 
 
