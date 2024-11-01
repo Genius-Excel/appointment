@@ -4,6 +4,22 @@
 {% block title %} Laundry Clinic {% endblock title %}
 
 
+<style>
+  .table td {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 150px; /* Adjust width as needed */
+  }
+  
+  .table td:hover {
+      overflow: visible;
+      white-space: normal;
+      max-width: none;
+  }
+  </style>
+  
+
 {% block dashboard_inner %}
 
               <!-- dashboard inner -->
@@ -44,7 +60,7 @@
              </thead>
              <tbody>
              {% for customer in customers %}
-               <tr>
+               <tr data-id="{{customer.id}}" onclick="window.location.href='/detail/{{customer.id}}'">
                  <th scope="row"> {{ customers.start_index|add:forloop.counter0 }} </th>
                 <td>{{customer.first_name}}</td>
                 <td>{{customer.last_name}}</td>
@@ -104,4 +120,16 @@
 {% endblock dashboard_inner %}
 
 
-{% block scripts %}   <script src="{% static 'js/visitor_page_reload.js' %}"></script>   {% endblock scripts %}
+{% block scripts %}  
+
+<script>
+  // JavaScript to make each row clickable and navigate to the detail page
+  document.querySelectorAll('tbody tr').forEach(row => {
+      row.addEventListener('click', () => {
+          const recordId = row.getAttribute('data-id'); // Set this data-id dynamically
+          window.location.href = `/detail/${recordId}`;
+      });
+  });
+</script>
+
+{% endblock scripts %}
