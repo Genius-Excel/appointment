@@ -1,0 +1,77 @@
+
+<nav id="sidebar">
+    <div class="sidebar_blog_1">
+       <div class="sidebar-header">
+          <div class="logo_section">
+             <a href="#"><img class="logo_icon img-responsive" src="#" alt="Company Logo" /></a>
+          </div>
+       </div>
+       <div class="sidebar_user_info">
+          <div class="icon_setting"></div>
+          <div class="user_profle_side">
+             {% if request.user.is_organisation_admin %}
+             <div class="user_img"><img class="img-responsive" src="#" alt="Company Logo" /></div>
+             {% elif request.user.is_employee %}
+             <div class="user_img"><img class="img-responsive" src="#" alt="Employee Photo" /></div>
+             {% endif %}
+             <div class="user_info">
+             {% if request.user.is_organisation_admin %}
+                <h6>{{secretary_name}}</h6>
+                <p><span class="online_animation"></span> Online</p>
+             {% elif request.user.is_employee %}
+                <h6>{{secretary_name}}</h6>
+                <p><span class="online_animation"></span> Online</p>
+             {% endif %}
+             </div>
+          </div>
+       </div>
+    </div>
+    <div class="sidebar_blog_2">
+       <!-- <h4>General</h4> -->
+       
+       <ul class="list-unstyled components">
+          {% if request.user.is_organisation_admin %}
+          <li class="active">
+             <a href="#"><i class="fa fa-users yellow_color"></i> <span>Visitors Log</span></a>
+          </li>
+          <li class="active">
+            <a href="#"><i class="fa fa-users green_color"></i> <span>Invited Visitors Log</span></a>
+          </li>
+           <li>
+             <a href="#"><i class="fa fa-bar-chart-o orange_color"></i> <span>Analytics Reports</span></a>
+          </li>
+           <li>
+             <a href="#">
+               <i class="fa fa-download"></i> <span>Export CSV</span></a>
+          </li>
+          <li>
+             <a href="#">
+               <i class="fa fa-user-plus"></i> <span>Onboard Employee</span></a>
+          </li>
+          <li>
+             <a href="#">
+               <i class="fa fa-key"></i> <span>Change Password</span></a>
+          </li>
+          <li>
+           <a href="#">
+             <i class="fa fa-sign-out"></i> <span>Log out</span></a>
+           </li>
+       {% else %}
+          <li>
+             <a href="#">
+               <i class="fa fa-user-plus"></i> <span>Generate Invite</span></a>
+          </li>
+          <li>
+             <a href="#">
+               <i class="fa fa-key"></i> <span>Change Password</span></a>
+          </li>
+          <li>
+           <a href="#">
+            <i class="fa fa-sign-out"></i> <span>Log out</span></a>
+          </li>
+       </ul>
+       {% endif %}
+     </div>
+     
+ </nav>
+ 
