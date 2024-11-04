@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from datetime import datetime
 from rest_framework import generics
 from .models import ( ClientAppointment, CradenMooreClients, EnishBookings, LaundryClinicCustomerQuery,
@@ -122,6 +122,13 @@ def laundry_clinic_dashboard_test(request):
 
     return render(request, 'reminder/laundry-index.html', context)
 
+
+def get_detail_laundry_clinic_record(request, id):
+    customer = get_object_or_404(LaundryClinicSpanishSpeakingCustomerQuery, id=id)
+
+    context = {'customer': customer}
+    return render(request, 'reminder/record-detail.html', context)
+
 ## End Laundry Clinic View Logic
 
 
@@ -133,7 +140,7 @@ class CreateCeraniEmail(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         user_response = serializer.save()
-        booking_id = user_response.booking_id
+        # booking_id = user_response.booking_id
         booking_name = user_response.booking_name
         selected_image = user_response.selected_image
         image_url = user_response.image_url
@@ -144,7 +151,7 @@ class CreateCeraniEmail(generics.CreateAPIView):
         # Template details
         template_file = 'templates/reminder/ceracerni-email-notification.html'
         context = {
-            'booking_id': booking_id,
+            # 'booking_id': booking_id,
             'booking_name': booking_name,
             'selected_image': selected_image,
             'image_url': image_url,
