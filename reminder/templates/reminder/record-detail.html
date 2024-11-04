@@ -1,0 +1,20 @@
+<div class="container">
+    <h2>Record Details</h2>
+    <p><strong>First Name:</strong> {{ customer.first_name }}</p>
+    <p><strong>Last Name:</strong> {{ record.last_name }}</p>
+    <p><strong>Email:</strong> {{customer.email_address}}</p>
+    <p><strong>Phone Number:</strong> {{ customer.phone_number }}</p>
+    <p><strong>Complaints (English)</strong> {{customer.customer_query_message_english}}</p>
+    <p><strong>Complaints (Spanish):</strong> {{customer.customer_query_message_spanish}}</p>
+    <p><strong>Comments (English):</strong> {{customer.customer_comments_english}}</p>
+    <p><strong>Comments (Spanish):</strong> {{customer.customer_comments_spanish}}</p>
+    <p><strong>AI Response (English):</strong> {{customer.ai_assistant_response_english}}</p>
+    <p><strong>AI Response (Spanish):</strong> {{customer.ai_assistant_response_spanish}}</p>
+    <p><strong>Laundry Event Details (English):</strong>{{customer.laundry_event_details_english}}</p>
+    <p><strong>Laundry Event Details (Spanish):</strong>{{customer.laundry_event_details_spanish}}</p>
+    <p><strong>Timestamp:</strong> {{ customer.timestamp }}</p>
+    <p><strong>Location:</strong> {{ customer.location }}</p>
+    <p><strong>AI Email Repsonse (Spanish) :</strong> {{customer.ai_email_response_spanish}}</p>
+
+    <a href="#" class="btn btn-primary">Back to Table</a>
+</div>
