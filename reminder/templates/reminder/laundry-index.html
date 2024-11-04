@@ -54,7 +54,7 @@
              <tbody>
              {% for customer in customers %}
                <tr data-id="{{customer.id}}" onclick="window.location.href='/detail/{{customer.id}}'">
-                 <th scope="row"> {{ customer.start_index|add:forloop.counter0 }} </th>
+                <th scope="row"> {{ customer.start_index|add:forloop.counter0 }} </th>
                 <td>{{customer.first_name}} {{customer.last_name}}</td>
                 <td>{{customer.email_address}}</td>
                 <td>{{customer.phone_number}}</td>
