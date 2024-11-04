@@ -150,7 +150,7 @@ class CreateCeraniEmail(generics.CreateAPIView):
         selected_image = user_response.selected_image
         image_url = user_response.image_url
         email_address = settings.CERACERNI_EMAIL
-        email_subject = 'Booking Confirmation With Selected Image'
+        email_subject = 'Booking Notification With Selected Image'
         email_sender = 'Tros Technologies'
 
         # Template details
