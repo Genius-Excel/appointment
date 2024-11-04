@@ -45,17 +45,17 @@
                  <th scope="col">Last Name</th>
                  <th scope="col">Email Address</th>
                  <th scope="col">Phone Number</th>   
-                 <th scope="col">Complaints (English)</th>  
-                 <th scope="col">Complaints (Spanish)</th>                   
-                 <th scope="col">Comments (English) </th>
-                 <th scope="col">Comments (Spanish) </th>
-                 <th>AI Response to customer Complaints (English) </th>
-                 <th>AI Response to customer Complaints (Spanish) </th>
-                 <th scope="col">Laundry Event Details (English) </th>
-                 <th scope="col">Laundry Event Details (Spanish) </th>
-                 <th scope="col">Timestamp</th>
-                 <th scope="col">Laundry Location</th>
-                 <th scope="col">AI Email Response</th>
+                 <th scope="col">Complaints</th>  
+                 <!-- <th scope="col">Complaints (Spanish)</th>                    -->
+                 <!-- <th scope="col">Comments (English) </th>
+                 <th scope="col">Comments (Spanish) </th> -->
+                 <!-- <th>AI Response to customer Complaints (English) </th> -->
+                 <!-- <th>AI Response to customer Complaints (Spanish) </th> -->
+                 <!-- <th scope="col">Laundry Event Details (English) </th> -->
+                 <!-- <th scope="col">Laundry Event Details (Spanish) </th> -->
+                 <th scope="col">Time</th>
+                 <th scope="col">Location</th>
+                 <!-- <th scope="col">AI Email Response</th> -->
                </tr>
              </thead>
              <tbody>
@@ -66,17 +66,17 @@
                 <td>{{customer.last_name}}</td>
                 <td>{{customer.email_address}}</td>
                 <td>{{customer.phone_number}}</td>
-                <td>{{customer.customer_query_message_english}}</td>
-                <td>{{customer.customer_query_message_spanish}}</td>
-                <td>{{customer.customer_comments_english}}</td>
-                <td>{{customer.customer_comments_spanish}}</td>
-                <td>{{customer.ai_assistant_response_english}}</td>
-                <td>{{customer.ai_assistant_response_spanish}}</td>
-                <td>{{customer.laundry_event_details_english}}</td>
-                <td>{{customer.laundry_event_details_spanish}}</td>
+                <td>{{customer.customer_query_message_english|truncatechars:15}}</td>
+                <!-- <td>{{customer.customer_query_message_spanish}}</td> -->
+                <!-- <td>{{customer.customer_comments_english}}</td> -->
+                <!-- <td>{{customer.customer_comments_spanish}}</td> -->
+                <!-- <td>{{customer.ai_assistant_response_english}}</td> -->
+                <!-- <td>{{customer.ai_assistant_response_spanish}}</td> -->
+                <!-- <td>{{customer.laundry_event_details_english}}</td>
+                <td>{{customer.laundry_event_details_spanish}}</td> -->
                 <td>{{customer.timestamp}}</td>
                 <td>{{customer.location}}</td>
-                <td>{{customer.ai_email_response_spanish}}</td>
+                <!-- <td>{{customer.ai_email_response_spanish}}</td> -->
                </tr>
              {% endfor %}
              </tbody>
