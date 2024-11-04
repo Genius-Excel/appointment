@@ -44,17 +44,11 @@
                  <th scope="col">Customer Name</th>
                  <th scope="col">Email Address</th>
                  <th scope="col">Phone Number</th>   
-                 <th scope="col">Complaints</th>  
-                 <!-- <th scope="col">Complaints (Spanish)</th>                    -->
-                 <!-- <th scope="col">Comments (English) </th>
-                 <th scope="col">Comments (Spanish) </th> -->
-                 <!-- <th>AI Response to customer Complaints (English) </th> -->
-                 <!-- <th>AI Response to customer Complaints (Spanish) </th> -->
-                 <!-- <th scope="col">Laundry Event Details (English) </th> -->
-                 <!-- <th scope="col">Laundry Event Details (Spanish) </th> -->
+                 <th scope="col">Complaints</th> 
                  <th scope="col">Time</th>
                  <th scope="col">Location</th>
-                 <!-- <th scope="col">AI Email Response</th> -->
+                 <th scope="col">Actions</th>
+                 <th scope="col">Status</th>
                </tr>
              </thead>
              <tbody>
@@ -67,7 +61,8 @@
                 <td>{{customer.customer_query_message_english|truncatechars:15}}</td>
                 <td>{{customer.timestamp}}</td>
                 <td>{{customer.location}}</td>
-               
+                <td> <button class="btn btn-secondary col-md-12" type="submit">View</button> </td>
+                <td>Resolved</td>
                </tr>
              {% endfor %}
              </tbody>
