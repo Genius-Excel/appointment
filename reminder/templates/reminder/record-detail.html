@@ -1,11 +1,18 @@
+{% extends 'laundry-base.html' %}
+{% load static %}
+
+{% block title %} Complaints Details {% endblock title %}
+
+
+{% block dashboard_inner %}
 <div class="container">
-    <h2>Record Details</h2>
+    <!-- <h2>Record Details</h2> -->
     <p><strong>First Name:</strong> {{ customer.first_name }}</p>
-    <p><strong>Last Name:</strong> {{ record.last_name }}</p>
+    <p><strong>Last Name:</strong> {{ customer.last_name }}</p>
     <p><strong>Email:</strong> {{customer.email_address}}</p>
     <p><strong>Phone Number:</strong> {{ customer.phone_number }}</p>
     <p><strong>Complaints (English)</strong> {{customer.customer_query_message_english}}</p>
-    <p><strong>Complaints (Spanish):</strong> {{customer.customer_query_message_spanish}}</p>
+   {% comment %} <!-- <p><strong>Complaints (Spanish):</strong> {{customer.customer_query_message_spanish}}</p> --> {%comment%}
     <p><strong>Comments (English):</strong> {{customer.customer_comments_english}}</p>
     <p><strong>Comments (Spanish):</strong> {{customer.customer_comments_spanish}}</p>
     <p><strong>AI Response (English):</strong> {{customer.ai_assistant_response_english}}</p>
@@ -16,5 +23,8 @@
     <p><strong>Location:</strong> {{ customer.location }}</p>
     <p><strong>AI Email Repsonse (Spanish) :</strong> {{customer.ai_email_response_spanish}}</p>
 
-    <a href="#" class="btn btn-primary">Back to Table</a>
+    <a href="{{request.META.HTTP_REFERER}}" class="btn btn-primary">Back to Table</a>
 </div>
+
+
+{% endblock dashboard_inner %}
