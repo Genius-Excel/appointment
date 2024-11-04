@@ -41,8 +41,7 @@
              <thead class="table-light">
                <tr>
                  <th scope="col">#</th>
-                 <th scope="col">First Name</th>
-                 <th scope="col">Last Name</th>
+                 <th scope="col">Customer Name</th>
                  <th scope="col">Email Address</th>
                  <th scope="col">Phone Number</th>   
                  <th scope="col">Complaints</th>  
@@ -61,22 +60,14 @@
              <tbody>
              {% for customer in customers %}
                <tr data-id="{{customer.id}}" onclick="window.location.href='/detail/{{customer.id}}'">
-                 <th scope="row"> {{ customers.start_index|add:forloop.counter0 }} </th>
-                <td>{{customer.first_name}}</td>
-                <td>{{customer.last_name}}</td>
+                 <th scope="row"> {{ customer.start_index|add:forloop.counter0 }} </th>
+                <td>{{customer.first_name}} {{customer.last_name}}</td>
                 <td>{{customer.email_address}}</td>
                 <td>{{customer.phone_number}}</td>
                 <td>{{customer.customer_query_message_english|truncatechars:15}}</td>
-                <!-- <td>{{customer.customer_query_message_spanish}}</td> -->
-                <!-- <td>{{customer.customer_comments_english}}</td> -->
-                <!-- <td>{{customer.customer_comments_spanish}}</td> -->
-                <!-- <td>{{customer.ai_assistant_response_english}}</td> -->
-                <!-- <td>{{customer.ai_assistant_response_spanish}}</td> -->
-                <!-- <td>{{customer.laundry_event_details_english}}</td>
-                <td>{{customer.laundry_event_details_spanish}}</td> -->
                 <td>{{customer.timestamp}}</td>
                 <td>{{customer.location}}</td>
-                <!-- <td>{{customer.ai_email_response_spanish}}</td> -->
+               
                </tr>
              {% endfor %}
              </tbody>
@@ -91,16 +82,16 @@
 <span class="step-links">
  {% if visitor_obj.has_previous %}
      <a href="?page=1">&laquo; first</a>
-     <a href="?page={{ visitor_obj.previous_page_number }}">previous</a>
+     <a href="?page={{ customers.previous_page_number }}">previous</a>
  {% endif %}
 
  <span class="current">
-     Page {{ visitor_obj.number }} of {{ visitor_obj.paginator.num_pages }}.
+     Page {{ customers.number }} of {{ customers.paginator.num_pages }}.
  </span>
 
  {% if visitor_obj.has_next %}
-     <a href="?page={{ visitor_obj.next_page_number }}">next</a>
-     <a href="?page={{ visitor_obj.paginator.num_pages }}">last &raquo;</a>
+     <a href="?page={{ customers.next_page_number }}">next</a>
+     <a href="?page={{ customers.paginator.num_pages }}">last &raquo;</a>
  {% endif %}
 </span>
 </div>
