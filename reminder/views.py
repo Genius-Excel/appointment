@@ -13,6 +13,7 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .utils import custom_email_sender, custom_sms_sender, send_email_with_html_template
 from django.conf import settings
+from django.core.paginator import Paginator
 import stripe 
 import json
 
@@ -116,7 +117,11 @@ def list_spanish_customers(request):
 
 
 def laundry_clinic_dashboard_test(request):
-    customers = LaundryClinicSpanishSpeakingCustomerQuery.objects.all()
+    customer_objs = LaundryClinicSpanishSpeakingCustomerQuery.objects.all()
+
+    paginator = Paginator(customer_objs, 10)
+    page_number = request.GET.get('page')
+    customers = paginator.get_page(page_number)
 
     context = {'customers': customers}
 
