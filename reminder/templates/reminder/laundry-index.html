@@ -53,7 +53,9 @@
              </thead>
              <tbody>
              {% for customer in customers %}
-               <tr data-id="{{customer.id}}" onclick="window.location.href='/detail/{{customer.id}}'">
+               <tr data-id="{{customer.id}}"
+                data-type = "{% if customer|default_if_none:"" in LaundryClinicSpanishSpeakingCustomerQuery %}spanish{% else %}english{% endif %}"
+                onclick="window.location.href='/detail/+this.getAttribute('data-type')'/'+this.getAttribute('data-id')">
                 <th scope="row"> {{ customer.start_index|add:forloop.counter0 }} </th>
                 <td>{{customer.first_name}} {{customer.last_name}}</td>
                 <td>{{customer.email_address}}</td>
