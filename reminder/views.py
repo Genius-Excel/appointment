@@ -41,21 +41,8 @@ class CreateCradenMooreClient(generics.CreateAPIView):
         custom_sms_sender(SMS_sender, SMS_recipient, SMS_meesage)
 
 
-class CreateEnishBooking(generics.CreateAPIView):
-    queryset = EnishBookings.objects.all()
-    serializer_class = EnishBookingsSerializer
 
-    def perform_create(self, serializer):
-        user = serializer.save()
 
-        SMS_sender = "Enish"
-        SMS_message = f"Hello {user.first_name},\n\n" \
-                      f"Your table reservation at {user.restaurant_location} for {user.number_of_guests} guests is confirmed for {user.appointment_date}\n" \
-                      f"We look forward to welcoming you!."
-        
-        SMS_recipient = user.mobile_number
-        custom_sms_sender(SMS_sender, SMS_recipient, SMS_message)
-        # custom_email_sender(settings.TEST_EMAIL, "Enish Testing", SMS_message, "Enish Restaurant")
 
 
 ## Laundry Clinic View logic
@@ -160,7 +147,14 @@ def get_detail_laundry_clinic_record(request, type, id):
     context = {'customer': customer, 'type': type}
     return render(request, 'reminder/record-detail.html', context)
 
+
+def update_query_status(request, type, id):
+    customer = ""
 ## End Laundry Clinic View Logic
+
+
+
+
 
 
 ## Ceracerni
@@ -194,7 +188,28 @@ class CreateCeraniEmail(generics.CreateAPIView):
 
 ## End Ceracerni
 
+
+
+
 # IMPLEMENT STRIPE PAYMENT FOR ENISH
+class CreateEnishBooking(generics.CreateAPIView):
+    queryset = EnishBookings.objects.all()
+    serializer_class = EnishBookingsSerializer
+
+    def perform_create(self, serializer):
+        user = serializer.save()
+
+        SMS_sender = "Enish"
+        SMS_message = f"Hello {user.first_name},\n\n" \
+                      f"Your table reservation at {user.restaurant_location} for {user.number_of_guests} guests is confirmed for {user.appointment_date}\n" \
+                      f"We look forward to welcoming you!."
+        
+        SMS_recipient = user.mobile_number
+        custom_sms_sender(SMS_sender, SMS_recipient, SMS_message)
+        # custom_email_sender(settings.TEST_EMAIL, "Enish Testing", SMS_message, "Enish Restaurant")
+
+
+
 @csrf_exempt
 def create_checkout_session(request, amount):
     try:
@@ -235,11 +250,7 @@ def confirm_payment(request, stripe_session_id):
         return JsonResponse({'payment_status': session_payment_status, 'payment_intent_id': payment_intent_id, 'session': session})
     except Exception as e:
         return JsonResponse({"Erro": str(e)})
-
-   
-def sample(request):
-    session_id = request.GET.get('session_id')
-    return render(request, 'reminder/sample.html')
+    
 
 def payment_success(request):
     session_id = request.GET.get('session_id')
