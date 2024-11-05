@@ -144,7 +144,7 @@ def laundry_clinic_dashboard_test(request):
     page_number = request.GET.get('page')
     customers = paginator.get_page(page_number)
 
-    context = {'customers': customers}
+    context = {'customers': customers, 'spanish_customers': spanish_customers}
 
     return render(request, 'reminder/laundry-index.html', context)
 
@@ -157,7 +157,7 @@ def get_detail_laundry_clinic_record(request, type, id):
     else:
         return HttpResponse("Not Found")
 
-    context = {'customer': customer}
+    context = {'customer': customer, 'type': type}
     return render(request, 'reminder/record-detail.html', context)
 
 ## End Laundry Clinic View Logic
