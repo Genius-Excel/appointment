@@ -54,8 +54,7 @@
              <tbody>
              {% for customer in customers %}
                <tr data-id="{{customer.id}}"
-                data-type = "{% if customer|default_if_none:"" in spanish_customers %}spanish{% else %}english{% endif %}"
-                onclick="window.location.href='/detail/+this.getAttribute('data-type')'/'+this.getAttribute('data-id')">
+                data-type = "{% if customer|default_if_none:"" in spanish_customers %}spanish{% else %}english{% endif %}" onclick="window.location.href='/detail/+this.getAttribute('data-type')' / '+ this.getAttribute('data-id')">
                 <th scope="row"> {{ customer.start_index|add:forloop.counter0 }} </th>
                 <td>{{customer.first_name}} {{customer.last_name}}</td>
                 <td>{{customer.email_address}}</td>
@@ -63,7 +62,7 @@
                 <td>{{customer.customer_query_message_english|truncatechars:15}}</td>
                 <td>{{customer.timestamp}}</td>
                 <td>{{customer.location}}</td>
-                <td> <button class="btn btn-secondary col-md-12" type="submit"><i class="fa fa-eye"></i> <span>view</span> </button> </td>
+                <td> <button class="btn btn-secondary col-md-12" type="submit"><i class="fa fa-eye yellow_color"></i> <span>view</span> </button> </td>
                 <td>Resolved</td>
                </tr>
              {% endfor %}
