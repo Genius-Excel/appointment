@@ -61,6 +61,12 @@ class LaundryClinicCustomerQuery(models.Model):
     language_mode = models.CharField(max_length=50, choices=language_options, default="English", null=True)
 
 
+status_options = (
+    ("Open", "Open"),
+    ("Resolved", "Resolved"),
+)
+
+
 class LaundryClinicEnglishSpeakingCustomerQuery(models.Model):
     """This is the model class of Laundry Clinic English Speakers
     """
@@ -76,8 +82,7 @@ class LaundryClinicEnglishSpeakingCustomerQuery(models.Model):
     timestamp = models.DateTimeField()
     ai_email_response = models.TextField()
     phone_number = models.CharField(max_length=50)
-
-
+    status = models.CharField(max_length=50, null=True, choices=status_options, default="Open")
 
 
 
@@ -100,6 +105,7 @@ class LaundryClinicSpanishSpeakingCustomerQuery(models.Model):
     location = models.CharField(max_length=150, null=True)
     timestamp = models.DateTimeField()
     ai_email_response_spanish = models.TextField(null=True)
+    status = models.CharField(max_length=50, null=True, choices=status_options, default="Open")
 
 
 
