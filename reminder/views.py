@@ -117,7 +117,26 @@ def list_spanish_customers(request):
 
 
 def laundry_clinic_dashboard_test(request):
-    customer_objs = LaundryClinicSpanishSpeakingCustomerQuery.objects.all()
+    spanish_customers = LaundryClinicSpanishSpeakingCustomerQuery.objects.all().values(
+        'first_name',
+        'last_name',
+        'email_address',
+        'phone_number',
+        'customer_query_message_english',
+        'location',
+    )
+
+    english_customers = LaundryClinicEnglishSpeakingCustomerQuery.objects.all().values(
+        'first_name',
+        'last_name',
+        'email_address',
+        'phone_number',
+        'customer_query_message',
+        'location',
+    )
+
+    customer_objs = list(english_customers) + list(spanish_customers)
+
 
     paginator = Paginator(customer_objs, 10)
     page_number = request.GET.get('page')
