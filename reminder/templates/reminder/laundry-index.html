@@ -28,7 +28,7 @@
                   <div class="row column_title">
                      <div class="col-md-12">
                         <div class="page_title">
-                           <h2>{{request.user.company_name}} visitor log</h2>
+                           <h2>Laundry Clinic Customer Queries</h2>
                         </div>
                      </div>
                   </div>
@@ -54,7 +54,7 @@
              <tbody>
              {% for customer in customers %}
                <tr data-id="{{customer.id}}"
-                data-type = "{% if customer|default_if_none:"" in LaundryClinicSpanishSpeakingCustomerQuery %}spanish{% else %}english{% endif %}"
+                data-type = "{% if customer|default_if_none:"" in spanish_customers %}spanish{% else %}english{% endif %}"
                 onclick="window.location.href='/detail/+this.getAttribute('data-type')'/'+this.getAttribute('data-id')">
                 <th scope="row"> {{ customer.start_index|add:forloop.counter0 }} </th>
                 <td>{{customer.first_name}} {{customer.last_name}}</td>
@@ -115,7 +115,9 @@
   document.querySelectorAll('tbody tr').forEach(row => {
       row.addEventListener('click', () => {
           const recordId = row.getAttribute('data-id'); // Set this data-id dynamically
-          window.location.href = `/detail/${recordId}`;
+          const recordType = row.getAttribute('data-type');
+
+          window.location.href = `/detail/${recordType}/${recordId}`;
       });
   });
 </script>
