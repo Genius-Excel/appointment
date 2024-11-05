@@ -149,8 +149,13 @@ def laundry_clinic_dashboard_test(request):
     return render(request, 'reminder/laundry-index.html', context)
 
 
-def get_detail_laundry_clinic_record(request, id):
-    customer = get_object_or_404(LaundryClinicSpanishSpeakingCustomerQuery, id=id)
+def get_detail_laundry_clinic_record(request, type, id):
+    if type == 'spanish':
+        customer = get_object_or_404(LaundryClinicSpanishSpeakingCustomerQuery, id=id)
+    elif type == 'english':
+        customer = get_object_or_404(LaundryClinicEnglishSpeakingCustomerQuery, id=id)
+    else:
+        return HttpResponse("Not Found")
 
     context = {'customer': customer}
     return render(request, 'reminder/record-detail.html', context)
