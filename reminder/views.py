@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from datetime import datetime
 from rest_framework import generics
 from .models import ( ClientAppointment, CradenMooreClients, EnishBookings, LaundryClinicCustomerQuery,
@@ -162,7 +162,7 @@ def update_query_status(request, type, id):
 
     customer.save()
 
-    
+    return redirect('laundry-index')
 ## End Laundry Clinic View Logic
 
 
