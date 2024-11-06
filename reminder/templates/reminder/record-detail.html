@@ -43,7 +43,13 @@
     <br>
     <div class="col-md-12">
         <a href="{{request.META.HTTP_REFERER}}" class="btn btn-warning mr-3">Back to table</a>
-        <button class="btn btn-primary ml-3" type="submit">Mark as resolved</button>
+
+        <!-- <button class="btn btn-primary ml-3" type="submit">Mark as resolved</button> -->
+         <form action="{% url 'update-record-status' type customer.id %}" method="post">
+            {% csrf_token %}
+
+            <button class="btn btn-primary ml-3" type="submit">Mark as resolved</button>
+         </form>
     </div>
 </div>
 
