@@ -41,14 +41,17 @@
     
     <br>
     <br>
-    <div class="col-md-12">
+    <div class="row">
         <a href="{{request.META.HTTP_REFERER}}" class="btn btn-warning mr-3">Back to table</a>
 
         <!-- <button class="btn btn-primary ml-3" type="submit">Mark as resolved</button> -->
-         <form action="{% url 'update-record-status' type customer.id %}" method="post">
+         <form action="{% url 'update-record-status' type customer.id %}" method="post" class="ml-3">
             {% csrf_token %}
-
-            <button class="btn btn-primary ml-3" type="submit">Mark as resolved</button>
+            {% if customer.status == 'Open' %}
+            <button class="btn btn-primary" type="submit">Mark as resolved</button>
+            {% else %}
+            <button class="btn btn-danger" type="submit">Undo</button>
+            {% endif %}
          </form>
     </div>
 </div>
