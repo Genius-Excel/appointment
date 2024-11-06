@@ -23,6 +23,7 @@ urlpatterns = [
     path('list-spanish-customers/', views.list_spanish_customers, name='list-spanish-customers'),
     path('laundry-index', views.laundry_clinic_dashboard_test, name='laundry-index'),
     path('detail/<str:type>/<int:id>', views.get_detail_laundry_clinic_record, name='record-detail'),
+    path('update-record-status/<str:type>/<int:id>', views.update_query_status, name='update-record-status'),
 
 
     # Ceracerni
