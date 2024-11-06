@@ -115,6 +115,7 @@ def laundry_clinic_dashboard_test(request):
         'customer_query_message_english',
         'location',
         'status',
+        'timestamp',
     )
 
     english_customers = LaundryClinicEnglishSpeakingCustomerQuery.objects.all().order_by(
@@ -128,6 +129,7 @@ def laundry_clinic_dashboard_test(request):
         'customer_query_message',
         'location',
         'status',
+        'timestamp',
     )
 
     customer_objs = list(english_customers) + list(spanish_customers)
