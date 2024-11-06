@@ -151,7 +151,18 @@ def get_detail_laundry_clinic_record(request, type, id):
 
 
 def update_query_status(request, type, id):
-    customer = ""
+    if type == 'spanish':
+        customer = get_object_or_404(LaundryClinicSpanishSpeakingCustomerQuery, id=id)
+        customer.status = "Resolved"
+    elif type == 'english':
+        customer = get_object_or_404(LaundryClinicEnglishSpeakingCustomerQuery, id=id)
+        customer.status = "Resolved"
+    else:
+        return HttpResponse("Not Found")
+
+    customer.save()
+
+    
 ## End Laundry Clinic View Logic
 
 
