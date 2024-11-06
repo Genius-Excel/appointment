@@ -59,7 +59,13 @@
                 <td>{{customer.first_name}} {{customer.last_name}}</td>
                 <td>{{customer.email_address}}</td>
                 <td>{{customer.phone_number}}</td>
-                <td>{{customer.customer_query_message_english|truncatechars:15}}</td>
+                <td>
+                  {% if customer in spanish_customers %}
+                    {{customer.customer_query_message_english|truncatechars:15}}
+                  {% else %}
+                    {{customer.customer_query_message|truncatechars:15}}
+                  {% endif %}
+                </td>
                 <td>{{customer.timestamp}}</td>
                 <td>{{customer.location}}</td>
                 <td> <button class="btn btn-secondary col-md-12" type="submit"><i class="fa fa-eye yellow_color"></i> <span>view</span> </button> </td>
