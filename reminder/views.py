@@ -104,7 +104,9 @@ def list_spanish_customers(request):
 
 
 def laundry_clinic_dashboard_test(request):
-    spanish_customers = LaundryClinicSpanishSpeakingCustomerQuery.objects.all().values(
+    spanish_customers = LaundryClinicSpanishSpeakingCustomerQuery.objects.all().order_by(
+        '-timestamp', 'status'
+    ).values(
         'id',
         'first_name',
         'last_name',
@@ -115,7 +117,9 @@ def laundry_clinic_dashboard_test(request):
         'status',
     )
 
-    english_customers = LaundryClinicEnglishSpeakingCustomerQuery.objects.all().values(
+    english_customers = LaundryClinicEnglishSpeakingCustomerQuery.objects.all().order_by(
+        '-timestamp', 'status'
+    ).values(
         'id',
         'first_name',
         'last_name',
@@ -129,7 +133,7 @@ def laundry_clinic_dashboard_test(request):
     customer_objs = list(english_customers) + list(spanish_customers)
 
 
-    paginator = Paginator(customer_objs, 10)
+    paginator = Paginator(customer_objs, 2)
     page_number = request.GET.get('page')
     customers = paginator.get_page(page_number)
 
