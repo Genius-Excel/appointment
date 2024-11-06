@@ -45,18 +45,14 @@
         <a href="{{request.META.HTTP_REFERER}}" class="btn btn-warning mr-3">Back to table</a>
 
         <!-- <button class="btn btn-primary ml-3" type="submit">Mark as resolved</button> -->
-         <!--Set variable for the action_type -->
-         {% if customer.status == 'Open' %}
-            {% with action_type='do' %}
-            {% endwith %}
-         {% elif customer.status == 'Resolved' %}
-            {% with action_type='undo' %}
-            {% endwith %}
-         {% endif %}
 
-        <h1> {{customer.status}} </h1>
-
-         <form action="#" method="post" class="ml-3">
+         <form action=" 
+            {% if customer.status == 'Open' %}
+                {% url 'update-record-status' type customer.id 'do' %}
+            {% else %}
+                {% url 'update-record-status' type customer.id 'undo' %}
+            {% endif %}
+         " method="post" class="ml-3">
             {% csrf_token %}
             {% if customer.status == 'Open' %}
             <button class="btn btn-primary" type="submit">Mark as resolved</button>
