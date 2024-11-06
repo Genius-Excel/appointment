@@ -46,15 +46,7 @@
 
         <!-- <button class="btn btn-primary ml-3" type="submit">Mark as resolved</button> -->
          <!--Set variable for the action_type -->
-         {% set action_type = 'do' %}
-
-         {% if customer.status == 'Open' %}
-            {% set action_type = 'do' %}
-         {% elif customer.status == 'Resolved' %}
-            {% set action_type = 'undo' %}
-         {% endif %}
-
-         <form action="{% url 'update-record-status' type customer.id action_type %}" method="post" class="ml-3">
+         <form action="{% url 'update-record-status' type customer.id 'do' if customer.status == 'Open' else 'undo' %}" method="post" class="ml-3">
             {% csrf_token %}
             {% if customer.status == 'Open' %}
             <button class="btn btn-primary" type="submit">Mark as resolved</button>
