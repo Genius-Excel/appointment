@@ -150,15 +150,20 @@ def get_detail_laundry_clinic_record(request, type, id):
     return render(request, 'reminder/record-detail.html', context)
 
 
-def update_query_status(request, type, id):
+def update_query_status(request, type, id, action_type):
     if type == 'spanish':
         customer = get_object_or_404(LaundryClinicSpanishSpeakingCustomerQuery, id=id)
-        customer.status = "Resolved"
     elif type == 'english':
         customer = get_object_or_404(LaundryClinicEnglishSpeakingCustomerQuery, id=id)
-        customer.status = "Resolved"
     else:
         return HttpResponse("Not Found")
+    
+    if action_type == 'do':
+            customer.status = "Resolved"
+    elif action_type == 'undo':
+            customer.status = "Open"
+    else:
+         return HttpResponse("Error: invalid action type")
 
     customer.save()
 
