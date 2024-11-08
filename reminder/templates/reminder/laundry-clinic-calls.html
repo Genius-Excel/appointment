@@ -43,7 +43,7 @@
                 <td>{{customer_call.phone_number}}</td>
                 <td>{{customer_call.call_summary|truncatechars:15}}</td>
                 <td>{{customer_call.call_transcript|truncatechars:15}}</td>
-                <td> <a class="btn btn-secondary" href="{{customer_call.recording_url}}"> <i class="fa fa-eye green_color"> </i></a></i><span>Listen</span>  </td>
+                <td> <a class="btn btn-secondary" href="{{customer_call.recording_url}}" target="_blank"> <i class="fa fa-headphones yellow_color"></i> </i><span>listen</span> </a> </td>
                 <td>{{customer_call.location}}</td>
                 <td> <button class="btn btn-secondary col-md-12" type="submit"><i class="fa fa-eye yellow_color"></i> <span>view</span> </button> </td>
                </tr>
@@ -58,18 +58,18 @@
 <!-- Pagination links -->
 <div class="pagination">
 <span class="step-links">
- {% if customers.has_previous %}
+ {% if customer_calls.has_previous %}
      <a href="?page=1">&laquo; first</a>
-     <a href="?page={{ customers.previous_page_number }}">previous</a>
+     <a href="?page={{ customer_calls.previous_page_number }}">previous</a>
  {% endif %}
 
  <span class="current">
-     Page {{ customers.number }} of {{ customers.paginator.num_pages }}.
+     Page {{ customer_calls.number }} of {{ customer_calls.paginator.num_pages }}.
  </span>
 
  {% if customers.has_next %}
-     <a href="?page={{ customers.next_page_number }}">next</a>
-     <a href="?page={{ customers.paginator.num_pages }}">last &raquo;</a>
+     <a href="?page={{ customer_calls.next_page_number }}">next</a>
+     <a href="?page={{ customer_calls.paginator.num_pages }}">last &raquo;</a>
  {% endif %}
 </span>
 </div>
