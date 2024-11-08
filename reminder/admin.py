@@ -2,7 +2,9 @@ from django.contrib import admin
 from .models import (ClientAppointment, CradenMooreClients, 
                      EnishBookings, LaundryClinicCustomerQuery, 
                      LaundryClinicEnglishSpeakingCustomerQuery,
-                     LaundryClinicSpanishSpeakingCustomerQuery)
+                     LaundryClinicSpanishSpeakingCustomerQuery,
+                     LaundryClinicVoiceCall,
+                     CeraCerni)
 
 # Register your models here.
 
@@ -12,3 +14,5 @@ admin.site.register(EnishBookings)
 admin.site.register(LaundryClinicCustomerQuery)
 admin.site.register(LaundryClinicEnglishSpeakingCustomerQuery)
 admin.site.register(LaundryClinicSpanishSpeakingCustomerQuery)
+admin.site.register(LaundryClinicVoiceCall)
+admin.site.register(CeraCerni)
