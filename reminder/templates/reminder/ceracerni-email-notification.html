@@ -70,16 +70,25 @@
 </head>
 <body>
     <div class="email-container">
-        <div class="email-header">Booking Confirmation</div>
+        {% if email_type == 'admin' %}
+            <div class="email-header">Booking Noitification</div>
+        {% else %}
+            <div class="email-header">Booking Confirmation</div>
+        {% endif %}
         
         <div class="email-body">
-            <p>Dear Admin,</p>
-            <p>A new Tufting activity has been booked! Here are the booking details:</p>
+            {% if email_type == 'admin' %}
+                <p>Dear Admin,</p>
+                <p>A new Tufting activity has been booked! Here are the booking details:</p>
+            {% else %}
+                <p>Dear Customer,</p>
+                <p>Your booking For Tufting Art Experience has been confirmed! Here are the booking details:</p>
+            {% endif %}
             
             <table class="email-table">
                 <tr>
-                    <th>Booking Name</th>
-                    <td>{{booking_name}}</td>
+                    <th>Booking Email</th>
+                    <td>{{booking_email}}</td>
                 </tr>
                 <tr>
                     <th>Selected Image Name</th>
@@ -91,12 +100,22 @@
                 <img src="{{image_url}}" alt="Selected Image">
             </div>
             
-            <p>We look forward to serving you. If you have any questions, feel free to contact us.</p>
+            {% if email_type == 'admin' %}
+                <p>We look forward to serving you. If you have any questions, feel free to contact us.</p>
+            {% else %}
+                <p>We look forward to seeing you for your tufting session. If you have any questions, feel free to contact us.</p>
+            {% endif %}
         </div>
         
-        <div class="email-footer">
-            &copy; 2024 TrosTechnologies | All rights reserved.
-        </div>
+        {% if email_type == 'admin' %}
+            <div class="email-footer">
+                &copy; 2024 TrosTechnologies | All rights reserved.
+            </div>
+        {% else %}
+            <div class="email-footer">
+                &copy; 2024 Ceracerni Art Hub | All rights reserved.
+            </div>
+        {% endif %}
     </div>
 </body>
 </html>
