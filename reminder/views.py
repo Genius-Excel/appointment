@@ -3,11 +3,13 @@ from datetime import datetime
 from rest_framework import generics
 from .models import ( ClientAppointment, CradenMooreClients, EnishBookings, LaundryClinicCustomerQuery,
                      LaundryClinicEnglishSpeakingCustomerQuery, LaundryClinicSpanishSpeakingCustomerQuery,
+                     LaundryClinicVoiceCall,
                      CeraCerni, )
 from .serializers import ( ClientAppointmentSerializer, CradenMooreClientsSerializer, 
                           EnishBookingsSerializer, LaundryClinicCustomerQuerySerializer,
                           LaundryClinicEnglishSpeakingCustomerQuerySerializer,
                           LaundryClinicSpanishSpeakingCustomerQuerySerializer,
+                          LaundryClinicVoiceCallSerializer,
                           CercerniSerializer)
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -70,6 +72,12 @@ class CreateLaundryClinicEmailApology(generics.CreateAPIView):
             spanish_sms_message = f"Estimado {customer.first_name}, su queja se pasó a uno de los miembros de nuestro equipo para que la trate y también se le envió un acuse de recibo por correo electrónico. Nos comunicaremos con usted en breve con una resolución. Gracias por elegir Laundry Clinic."
             custom_sms_sender('Laundry Clinic', customer.phone_number, spanish_sms_message)
             
+
+
+class CreateLaundryClinicVoiceCall(generics.CreateAPIView):
+    queryset = LaundryClinicVoiceCall.objects.all()
+    serializer_class = LaundryClinicVoiceCallSerializer
+
 
 
 class CreateEnglishSpeakingCustomersQuery(generics.CreateAPIView):
@@ -214,7 +222,7 @@ class CreateCeraniEmail(generics.CreateAPIView):
         context['email_type'] = 'customer'
 
         send_email_with_html_template(
-            template_file, context, email_address, 
+            template_file, context, booking_email, 
             customer_email_subject, email_sender
         )
 
