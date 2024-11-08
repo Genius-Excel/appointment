@@ -36,8 +36,7 @@
              </thead>
              <tbody>
              {% for customer_call in customer_calls %}
-               <tr data-id="{{customer_calls.id}}"
-                data-type = "onclick="window.location.href="">
+               <tr data-id="{{customer_call.id}}" onclick="window.location.href='/ai-call-detail/{{customer_call.id}}' ">
                 <th scope="row"> {{ customer.start_index|add:forloop.counter0 }} </th>
                 <td>{{customer_call.caller_name}}</td>
                 <td>{{customer_call.phone_number}}</td>
@@ -87,3 +86,19 @@
 <!-- end dashboard inner -->
 
 {% endblock dashboard_inner %}
+
+
+
+{% block scripts %}  
+
+<script>
+  // JavaScript to make each row clickable and navigate to the detail page
+  document.querySelectorAll('tbody tr').forEach(row => {
+      row.addEventListener('click', () => {
+          const recordId = row.getAttribute('data-id'); // Set this data-id dynamically
+          window.location.href = `/ai-call-detail/${recordId}`;
+      });
+  });
+</script>
+
+{% endblock scripts %}
