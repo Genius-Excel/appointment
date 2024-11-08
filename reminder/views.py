@@ -190,23 +190,39 @@ class CreateCeraniEmail(generics.CreateAPIView):
     def perform_create(self, serializer):
         user_response = serializer.save()
         # booking_id = user_response.booking_id
-        booking_name = user_response.booking_name
+        # booking_name = user_response.booking_name
         selected_image = user_response.selected_image
         image_url = user_response.image_url
         email_address = settings.CERACERNI_EMAIL
+        booking_email = user_response.booking_email
         email_subject = 'Booking Notification With Selected Image'
         email_sender = 'Tros Technologies'
 
         # Template details
         template_file = 'templates/reminder/ceracerni-email-notification.html'
         context = {
-            # 'booking_id': booking_id,
-            'booking_name': booking_name,
+            'email_type': 'admin',
+            'booking_email': booking_email,
             'selected_image': selected_image,
             'image_url': image_url,
         }
 
         send_email_with_html_template(template_file, context, email_address, email_subject, email_sender)
+
+        customer_email_subject = 'Booking Confirmation With Selected Image'
+        email_sender = "Ceracerni Art Hub"
+
+        context = {
+            'email_type': 'customer',
+            'booking_email': booking_email,
+            'selected_image': selected_image,
+            'image_url': image_url,
+        }
+
+        send_email_with_html_template(
+            template_file, context, email_address, 
+            customer_email_subject, email_sender
+        )
 
 
 
