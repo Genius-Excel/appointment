@@ -211,13 +211,15 @@ class CreateCeraniEmail(generics.CreateAPIView):
 
         customer_email_subject = 'Booking Confirmation With Selected Image'
         email_sender = "Ceracerni Art Hub"
+        context['email_type'] = 'customer'
 
-        context = {
-            'email_type': 'customer',
-            'booking_email': booking_email,
-            'selected_image': selected_image,
-            'image_url': image_url,
-        }
+        # context = {
+        #     'email_type': 'customer',
+        #     'booking_email': booking_email,
+        #     'selected_image': selected_image,
+        #     'image_url': image_url,
+        # }
+        print(f"Context dictionary after modification is {context}")
 
         send_email_with_html_template(
             template_file, context, email_address, 
