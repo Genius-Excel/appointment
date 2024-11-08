@@ -182,6 +182,20 @@ def update_query_status(request, type, id, action_type):
     customer.save()
 
     return redirect('laundry-index')
+
+
+def get_all_laundry_clinic_calls(request):
+    customer_objs =  LaundryClinicVoiceCall.objects.all()
+
+    paginator = Paginator(customer_objs, 2)
+    page_number = request.GET.get('page')
+    customer_calls = paginator.get_page(page_number)
+
+    context = {
+        'customer_calls': customer_calls,
+    }
+
+    return render(request, 'reminder/laundry-clinic-calls.html', context)
 ## End Laundry Clinic View Logic
 
 
