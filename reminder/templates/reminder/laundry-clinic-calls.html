@@ -96,7 +96,7 @@
   document.querySelectorAll('tbody tr').forEach(row => {
       row.addEventListener('click', () => {
           const recordId = row.getAttribute('data-id'); // Set this data-id dynamically
-          window.location.href = `/ai-call-detail/${recordId}`;
+          window.location.href = `/laundry-clinic-ai-call/detail/${recordId}/`;
       });
   });
 </script>
