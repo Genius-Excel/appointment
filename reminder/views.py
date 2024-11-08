@@ -196,6 +196,16 @@ def get_all_laundry_clinic_calls(request):
     }
 
     return render(request, 'reminder/laundry-clinic-calls.html', context)
+
+
+def get_laundry_clinic_ai_call_detail(request, id):
+    customer_call = get_object_or_404(LaundryClinicVoiceCall, id=id)
+
+    context = {
+        'customer_call': customer_call,
+    }
+
+    return render(request, 'reminder/ai-call-record-detail.html', context)
 ## End Laundry Clinic View Logic
 
 
