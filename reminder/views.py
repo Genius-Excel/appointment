@@ -187,7 +187,7 @@ def update_query_status(request, type, id, action_type):
 def get_all_laundry_clinic_calls(request):
     customer_objs =  LaundryClinicVoiceCall.objects.all()
 
-    paginator = Paginator(customer_objs, 2)
+    paginator = Paginator(customer_objs, 10)
     page_number = request.GET.get('page')
     customer_calls = paginator.get_page(page_number)
 
