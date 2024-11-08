@@ -115,7 +115,7 @@ class LaundryClinicVoiceCall(models.Model):
     location = models.CharField(max_length=150, null=True)
     call_summary = models.TextField()
     call_transcript = models.TextField()
-    call_recordings = models.FileField(upload_to='laundry-clinic-ai-call-recordings/', null=True)
+    call_recordings = models.TextField(null=True)
 
 
 class CeraCerni(models.Model):
