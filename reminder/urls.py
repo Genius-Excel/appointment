@@ -24,7 +24,7 @@ urlpatterns = [
     path('list-spanish-customers/', views.list_spanish_customers, name='list-spanish-customers'),
     path('laundry-index', views.laundry_clinic_dashboard_test, name='laundry-index'),
     path('laundry-clinic-ai-calls/', views.get_all_laundry_clinic_calls, name='laundry-clinic-calls'),
-    path('laundry-clinic-ai-call/detail/<int:id>/', views),
+    path('laundry-clinic-ai-call/detail/<int:id>/', views.get_laundry_clinic_ai_call_detail, name='ai-call-detail'),
     path('detail/<str:type>/<int:id>', views.get_detail_laundry_clinic_record, name='record-detail'),
     path('update-record-status/<str:type>/<int:id>/<str:action_type>/', views.update_query_status, name='update-record-status'),
 
