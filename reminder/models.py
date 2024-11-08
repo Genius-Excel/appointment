@@ -108,6 +108,15 @@ class LaundryClinicSpanishSpeakingCustomerQuery(models.Model):
     status = models.CharField(max_length=50, null=True, choices=status_options, default="Open")
 
 
+class LaundryClinicVoiceCall(models.Model):
+    caller_name = models.CharField(max_length=150, null=True)
+    phone_number = models.CharField(max_length=50, null=True)
+    email = models.CharField(max_length=50, null=True)
+    location = models.CharField(max_length=150, null=True)
+    call_summary = models.TextField()
+    call_transcript = models.TextField()
+    call_recordings = models.FileField(upload_to='laundry-clinic-ai-call-recordings/', null=True)
+
 
 class CeraCerni(models.Model):
     booking_id = models.CharField(max_length=50, null=True)
