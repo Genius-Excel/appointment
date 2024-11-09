@@ -148,7 +148,7 @@ def laundry_clinic_dashboard_test(request):
     customer_objs = list(english_customers) + list(spanish_customers)
 
 
-    paginator = Paginator(customer_objs, 2)
+    paginator = Paginator(customer_objs, 10)
     page_number = request.GET.get('page')
     customers = paginator.get_page(page_number)
 
