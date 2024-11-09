@@ -4,45 +4,47 @@
 {% block title %} Complaints Details {% endblock title %}
 
 
+
+
 {% block dashboard_inner %}
 <div class="container">
     <!-- <h2>Record Details</h2> -->
     <br>
-
-    <!--Check type of template to be displayed based on language. -->
+        <!--Check type of template to be displayed based on language. -->
     {% if type == 'spanish' %}
         <p><strong>First Name:</strong> {{ customer.first_name }}</p>
         <p><strong>Last Name:</strong> {{ customer.last_name }}</p>
         <p><strong>Email:</strong> {{customer.email_address}}</p>
         <p><strong>Phone Number:</strong> {{ customer.phone_number }}</p>
-        <p><strong>Complaints (English):</strong> {{customer.customer_query_message_english}}</p>
-        <p><strong>Complaints (Spanish):</strong> {{customer.customer_query_message_spanish}}</p>
-        <p><strong>Comments (English):</strong> {{customer.customer_comments_english}}</p>
-        <p><strong>Comments (Spanish):</strong> {{customer.customer_comments_spanish}}</p>
-        <p><strong>AI Response (English):</strong> {{customer.ai_assistant_response_english}}</p>
-        <p><strong>AI Response (Spanish):</strong> {{customer.ai_assistant_response_spanish}}</p>
-        <p><strong>Laundry Event Details (English):</strong>{{customer.laundry_event_details_english}}</p>
+        <p class="text-wrap" style="word-wrap: break-word; overflow-wrap: anywhere; white-space: pre-wrap; max-width: 100%;"><strong>Complaints (English):</strong> {{customer.customer_query_message_english}}</p>
+        <p class="text-wrap"><strong>Complaints (Spanish):</strong> {{customer.customer_query_message_spanish}}</p>
+        <p class="text-wrap"><strong>Comments (English):</strong> {{customer.customer_comments_english}}</p>
+        <p class="text-wrap"><strong>Comments (Spanish):</strong> {{customer.customer_comments_spanish}}</p>
+        <p class="text-wrap"><strong>AI Response (English):</strong> {{customer.ai_assistant_response_english}}</p>
+        <p class="text-wrap"><strong>AI Response (Spanish):</strong> {{customer.ai_assistant_response_spanish}}</p>
+        <p class="text-wrap"><strong>Laundry Event Details (English):</strong>{{customer.laundry_event_details_english}}</p>
         <p><strong>Laundry Event Details (Spanish):</strong>{{customer.laundry_event_details_spanish}}</p>
         <p><strong>Timestamp:</strong> {{ customer.timestamp }}</p>
         <p><strong>Location:</strong> {{ customer.location }}</p>
-        <p><strong>AI Email Response (Spanish) :</strong> {{customer.ai_email_response_spanish}}</p>
+        <p class="text-wrap"><strong>AI Email Response (Spanish):</strong> {{customer.ai_email_response_spanish}}</p>
     {% elif type == 'english' %}
         <p><strong>First Name:</strong> {{ customer.first_name }}</p>
         <p><strong>Last Name:</strong> {{ customer.last_name }}</p>
         <p><strong>Email:</strong> {{customer.email_address}}</p>
         <p><strong>Phone Number:</strong> {{ customer.phone_number }}</p>
-        <p><strong>Complaints</strong> {{customer.customer_query_message}}</p>
-        <p><strong>AI Response:</strong> {{customer.ai_assistant_response}}</p>
-        <p><strong>Laundry Event Details:</strong>{{customer.laundry_event_details}}</p>
+        <p class="text-wrap"><strong>Complaints:</strong> {{customer.customer_query_message}}</p>
+        <p class="text-wrap"><strong>AI Response:</strong> {{customer.ai_assistant_response}}</p>
+        <p class="text-wrap"><strong>Laundry Event Details:</strong>{{customer.laundry_event_details}}</p>
         <p><strong>Timestamp:</strong> {{ customer.timestamp }}</p>
         <p><strong>Location:</strong> {{ customer.location }}</p>
-        <p><strong>AI Email Response:</strong> {{customer.ai_email_response}}</p>
+        <p class="text-wrap"><strong>AI Email Response:</strong> {{customer.ai_email_response}}</p>
     {% endif %}
-    
+</div>
+
     <br>
     <br>
     <div class="row">
-        <a href="{{request.META.HTTP_REFERER}}" class="btn btn-warning mr-3">Back to table</a>
+        <a href="{{request.META.HTTP_REFERER}}" class="btn btn-warning">Back to table</a>
 
         <!-- <button class="btn btn-primary ml-3" type="submit">Mark as resolved</button> -->
 
