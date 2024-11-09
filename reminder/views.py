@@ -116,6 +116,7 @@ def list_spanish_customers(request):
     return render(request, 'reminder/spanish-customer.html', context)
 
 
+@login_required(login_url='login-user')
 def laundry_clinic_dashboard_test(request):
     spanish_customers = LaundryClinicSpanishSpeakingCustomerQuery.objects.all().order_by(
         '-timestamp', 'status'
@@ -157,6 +158,7 @@ def laundry_clinic_dashboard_test(request):
     return render(request, 'reminder/laundry-index.html', context)
 
 
+@login_required(login_url='login-user')
 def get_detail_laundry_clinic_record(request, type, id):
     if type == 'spanish':
         customer = get_object_or_404(LaundryClinicSpanishSpeakingCustomerQuery, id=id)
@@ -169,6 +171,7 @@ def get_detail_laundry_clinic_record(request, type, id):
     return render(request, 'reminder/record-detail.html', context)
 
 
+@login_required(login_url='login-user')
 def update_query_status(request, type, id, action_type):
     if type == 'spanish':
         customer = get_object_or_404(LaundryClinicSpanishSpeakingCustomerQuery, id=id)
@@ -188,7 +191,7 @@ def update_query_status(request, type, id, action_type):
 
     return redirect('laundry-index')
 
-
+@login_required(login_url='login-user')
 def get_all_laundry_clinic_calls(request):
     customer_objs =  LaundryClinicVoiceCall.objects.all()
 
@@ -202,7 +205,7 @@ def get_all_laundry_clinic_calls(request):
 
     return render(request, 'reminder/laundry-clinic-calls.html', context)
 
-
+@login_required(login_url='login-user')
 def get_laundry_clinic_ai_call_detail(request, id):
     customer_call = get_object_or_404(LaundryClinicVoiceCall, id=id)
 
