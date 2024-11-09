@@ -236,6 +236,13 @@ def login_user(request):
     
     context = {'title': 'Login user'}
     return render(request, 'reminder/login.html', context)
+
+
+@login_required(login_url='login-user')
+def logout_user(request):
+    logout(request)
+    messages.info(request, "You have been logged out successfully!")
+    return redirect('login-user')
 ## End Laundry Clinic View Logic
 
 
