@@ -20,6 +20,7 @@ urlpatterns = [
     path('api/create-spanish-customer-query', views.CreateSpanishSpeakingCustomersQuery.as_view(), name='spanish-customers'),
     path('api/update-spanish-customer-query/<int:spreadsheet_row>', views.UpdateSpanishSpeakingcustomersQuery.as_view(), name='update-spanish-customers'),
     
+    path('login-user/', views.login_user, name='login-user'),
     path('list-english-customers/', views.list_english_customers, name='list-english-customers'),
     path('list-spanish-customers/', views.list_spanish_customers, name='list-spanish-customers'),
     path('laundry-index', views.laundry_clinic_dashboard_test, name='laundry-index'),
