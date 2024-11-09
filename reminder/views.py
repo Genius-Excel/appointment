@@ -14,7 +14,12 @@ from .serializers import ( ClientAppointmentSerializer, CradenMooreClientsSerial
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .utils import custom_email_sender, custom_sms_sender, send_email_with_html_template
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login, logout, authenticate
+from django.contrib import messages
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator
 import stripe 
 import json
@@ -206,6 +211,31 @@ def get_laundry_clinic_ai_call_detail(request, id):
     }
 
     return render(request, 'reminder/ai-call-record-detail.html', context)
+
+
+def login_user(request):
+    if request.method == "POST":
+        password = request.POST.get('password')
+        username = request.POST.get('username')
+        
+        username_attempt = None
+        # Query database to check if username exists
+        try:
+            username_attempt = User.objects.get(username=username)
+        except ObjectDoesNotExist:
+            messages.error(request, "Invalid Username entered")
+            # return redirect(reverse(login_user))
+
+        user = authenticate(request, password=password, username=username)
+        if user is not None:
+            login(request, user)
+            return redirect('laundry-index')
+        else:
+            messages.error(request, "Incorrect password")
+            return redirect('login-user')
+    
+    context = {'title': 'Login user'}
+    return render(request, 'reminder/login.html', context)
 ## End Laundry Clinic View Logic
 
 
