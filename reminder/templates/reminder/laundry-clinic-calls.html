@@ -24,7 +24,6 @@
          <table class="table table-striped table-hover" id="callsTableId">
              <thead class="table-light">
                <tr>
-                 <th scope="col">#</th>
                  <th scope="col">Caller Name</th>
                  <th scope="col">Phone Number</th>   
                  <th scope="col">Call Summary</th> 
@@ -37,7 +36,6 @@
              <tbody>
              {% for customer_call in customer_calls %}
                <tr data-id="{{customer_call.id}}" onclick="window.location.href='laundry-clinic-ai-call/detail/{{customer_call.id}}/'">
-                <th scope="row"> {{ customer.start_index|add:forloop.counter0 }} </th>
                 <td>{{customer_call.caller_name}}</td>
                 <td>{{customer_call.phone_number}}</td>
                 <td>{{customer_call.call_summary|truncatechars:15}}</td>
