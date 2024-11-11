@@ -40,6 +40,7 @@
          <table class="table table-striped table-hover" id="chatTableId">
              <thead class="table-light">
                <tr>
+                <th scope="col">#</th>
                  <th scope="col">Customer Name</th>
                  <th scope="col">Email Address</th>
                  <th scope="col">Phone Number</th>   
@@ -54,6 +55,7 @@
              {% for customer in customers %}
                <tr data-id="{{customer.id}}"
                 data-type = "{% if customer|default_if_none:"" in spanish_customers %}spanish{% else %}english{% endif %}" onclick="window.location.href='/detail/+this.getAttribute('data-type')' / '+ this.getAttribute('data-id')">
+                <th scope="row"> {{ customer.start_index|add:forloop.counter0 }} </th>
                 <td>{{customer.first_name}} {{customer.last_name}}</td>
                 <td>{{customer.email_address}}</td>
                 <td>{{customer.phone_number}}</td>
