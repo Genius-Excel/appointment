@@ -37,6 +37,7 @@
              <tbody>
              {% for customer_call in customer_calls %}
                <tr data-id="{{customer_call.id}}" onclick="window.location.href='laundry-clinic-ai-call/detail/{{customer_call.id}}/'">
+                <th scope="row"> {{ customer.start_index|add:forloop.counter0 }} </th>
                 <td>{{customer_call.caller_name}}</td>
                 <td>{{customer_call.phone_number}}</td>
                 <td>{{customer_call.call_summary|truncatechars:15}}</td>
