@@ -35,7 +35,8 @@ urlpatterns = [
     path('send-email-ceracerni', views.CreateCeraniEmail.as_view(), name='send-email-ceracerni'),
 
 
-    
+    path('api/create-image-ads', views.CreateImageAds.as_view(), name='create-image-ads'),
+
 
 
 
