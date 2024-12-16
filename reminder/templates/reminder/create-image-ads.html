@@ -3,14 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post image banner</title>
+    <title>Image URL Uploader</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"][readonly] {
+            background-color: #f9f9f9;
+            color: #666;
+            border-color: #ddd;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button.post {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        button.update {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .container h1 {
+                font-size: 20px;
+            }
+        }
+
+
+        .messages {
+    margin-bottom: 20px;
+}
+.alert {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+    </style>
 </head>
 <body>
+    <div class="container">
+        {% if messages %}
+<div class="messages">
+    {% for message in messages %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="container">
+    <h2>Create Image Ad</h2>
     <form method="post">
         {% csrf_token %}
-        {{form.as_p}}
-
-        <input type="submit" value="POST">
+        {{ form.image_url }}
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+</div>
+
+
+        <!-- <h1>Image URL Uploader</h1>
+        <div class="form-group">
+            {% csrf_token %}
+            {{form.image_url}}
+            <button id="submitButton" class="post">POST</button>
+        </div>
+    </div> -->
+
+    <script>
+        const imageUrlInput = document.getElementById('imageUrl');
+        const submitButton = document.getElementById('submitButton');
+
+        // Initial State: POST
+        let isPosted = false;
+
+        submitButton.addEventListener('click', () => {
+            if (!isPosted) {
+                // Simulate POST state
+                const url = imageUrlInput.value.trim();
+                if (url === '') {
+                    alert('Please enter a valid URL.');
+                    return;
+                }
+                imageUrlInput.setAttribute('readonly', true);
+                submitButton.textContent = 'UPDATE';
+                submitButton.classList.remove('post');
+                submitButton.classList.add('update');
+                isPosted = true;
+            } else {
+                // Allow URL to be updated
+                imageUrlInput.removeAttribute('readonly');
+                submitButton.textContent = 'POST';
+                submitButton.classList.remove('update');
+                submitButton.classList.add('post');
+                isPosted = false;
+            }
+        });
+    </script>
 </body>
 </html>
