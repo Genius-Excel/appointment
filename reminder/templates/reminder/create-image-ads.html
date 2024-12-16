@@ -108,34 +108,32 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        {% if messages %}
-<div class="messages">
-    {% for message in messages %}
-    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
-        {{ message }}
-    </div>
-    {% endfor %}
-</div>
-{% endif %}
+
+
 
 <div class="container">
+    
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     <h2>Create Image Ad</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.image_url }}
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" id="submitButton" class="post">Submit</button>
     </form>
+
 </div>
 
 
-        <!-- <h1>Image URL Uploader</h1>
-        <div class="form-group">
-            {% csrf_token %}
-            {{form.image_url}}
-            <button id="submitButton" class="post">POST</button>
-        </div>
-    </div> -->
+        
 
     <script>
         const imageUrlInput = document.getElementById('imageUrl');
