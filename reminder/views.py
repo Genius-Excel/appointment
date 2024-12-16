@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from datetime import datetime
 from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from .models import ( ClientAppointment, CradenMooreClients, EnishBookings, LaundryClinicCustomerQuery,
                      LaundryClinicEnglishSpeakingCustomerQuery, LaundryClinicSpanishSpeakingCustomerQuery,
                      LaundryClinicVoiceCall,
@@ -375,3 +377,12 @@ def home(request):
 class CreateImageAds(generics.CreateAPIView):
     queryset = ImageAds.objects.all()
     serializer_class = ImageAdsSerializer
+
+
+@api_view(["GET"])
+def get_latest_image(request):
+    image_url = ImageAds.objects.all().order_by('-created_at').first()
+
+    return Response({'image_url': image_url.image_url}, status=200)
+
+    
