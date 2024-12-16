@@ -13,6 +13,7 @@ from .serializers import ( ClientAppointmentSerializer, CradenMooreClientsSerial
                           LaundryClinicSpanishSpeakingCustomerQuerySerializer,
                           LaundryClinicVoiceCallSerializer,
                           CercerniSerializer, ImageAdsSerializer)
+from .forms import ImageAdsForm
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .utils import custom_email_sender, custom_sms_sender, send_email_with_html_template
@@ -385,4 +386,15 @@ def get_latest_image(request):
 
     return Response({'image_url': image_url.image_url}, status=200)
 
-    
+
+def create_new_image_banner(request):
+    form = ImageAdsForm()
+
+    if request.method == "POST":
+        form = ImageAdsForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+    context = {'form': form}
+
+    return render(request, 'reminder/create-image-ads.html', context)
