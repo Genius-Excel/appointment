@@ -4,13 +4,13 @@ from rest_framework import generics
 from .models import ( ClientAppointment, CradenMooreClients, EnishBookings, LaundryClinicCustomerQuery,
                      LaundryClinicEnglishSpeakingCustomerQuery, LaundryClinicSpanishSpeakingCustomerQuery,
                      LaundryClinicVoiceCall,
-                     CeraCerni, )
+                     CeraCerni, ImageAds)
 from .serializers import ( ClientAppointmentSerializer, CradenMooreClientsSerializer, 
                           EnishBookingsSerializer, LaundryClinicCustomerQuerySerializer,
                           LaundryClinicEnglishSpeakingCustomerQuerySerializer,
                           LaundryClinicSpanishSpeakingCustomerQuerySerializer,
                           LaundryClinicVoiceCallSerializer,
-                          CercerniSerializer)
+                          CercerniSerializer, ImageAdsSerializer)
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .utils import custom_email_sender, custom_sms_sender, send_email_with_html_template
@@ -372,3 +372,6 @@ def home(request):
     return render(request, 'reminder/home.html')
 
 
+class CreateImageAds(generics.CreateAPIView):
+    queryset = ImageAds.objects.all()
+    serializer_class = ImageAdsSerializer
