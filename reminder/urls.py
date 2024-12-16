@@ -36,6 +36,7 @@ urlpatterns = [
 
 
     path('api/create-image-ads', views.CreateImageAds.as_view(), name='create-image-ads'),
+    path('api/get-image-url', views.get_latest_image, name='latest-image'),
 
 
 
