@@ -124,3 +124,10 @@ class CeraCerni(models.Model):
     booking_email = models.CharField(max_length=50, null=True)
     selected_image = models.CharField(max_length=150, null=True)
     image_url = models.CharField(max_length=500, null=True)
+
+
+
+class ImageAds(models.Model):
+    image_url = models.URLField(null=False, blank=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
