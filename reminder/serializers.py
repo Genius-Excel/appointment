@@ -1,7 +1,8 @@
 from rest_framework import serializers
 from .models import (ClientAppointment, CradenMooreClients, EnishBookings,
                       LaundryClinicCustomerQuery, LaundryClinicEnglishSpeakingCustomerQuery,
-                      LaundryClinicSpanishSpeakingCustomerQuery, LaundryClinicVoiceCall, CeraCerni)
+                      LaundryClinicSpanishSpeakingCustomerQuery, LaundryClinicVoiceCall, CeraCerni,
+                      ImageAds)
 
 class ClientAppointmentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -51,4 +52,7 @@ class LaundryClinicVoiceCallSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-
+class ImageAdsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ImageAds
+        fields = "__all__"
