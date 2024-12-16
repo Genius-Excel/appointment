@@ -3,6 +3,7 @@ from datetime import datetime
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from django.contrib import messages
 from .models import ( ClientAppointment, CradenMooreClients, EnishBookings, LaundryClinicCustomerQuery,
                      LaundryClinicEnglishSpeakingCustomerQuery, LaundryClinicSpanishSpeakingCustomerQuery,
                      LaundryClinicVoiceCall,
@@ -394,6 +395,9 @@ def create_new_image_banner(request):
         form = ImageAdsForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Image banner uploaded successfully.")
+        else:
+            messages.error(request, "Error occured while uploading image")
 
     context = {'form': form}
 
