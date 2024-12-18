@@ -402,3 +402,8 @@ def create_new_image_banner(request):
     context = {'form': form}
 
     return render(request, 'reminder/create-image-ads.html', context)
+
+
+def jotani_demo(request):
+    return render(request, 'reminder/jotani-demo.html')
+    
