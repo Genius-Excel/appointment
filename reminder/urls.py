@@ -39,5 +39,6 @@ urlpatterns = [
     path('api/get-image-url', views.get_latest_image, name='latest-image'),
 
     path('create-image-ads-form', views.create_new_image_banner, name='create-image-ads-form'),
+    path('jotani-conceirge-demo', views.jotani_demo, name='jotani-demo'),
     
 ]
