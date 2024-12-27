@@ -406,4 +406,7 @@ def create_new_image_banner(request):
 
 def jotani_demo(request):
     return render(request, 'reminder/jotani-demo.html')
+
+def jotani_general_demo(request):
+    return render(request, 'reminder/jotani-general-demo.html')
     
