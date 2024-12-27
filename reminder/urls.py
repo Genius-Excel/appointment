@@ -40,5 +40,6 @@ urlpatterns = [
 
     path('create-image-ads-form', views.create_new_image_banner, name='create-image-ads-form'),
     path('jotani-conceirge-demo', views.jotani_demo, name='jotani-demo'),
+    path('jotani-chat-assistant-demo', views.jotani_general_demo, name='jotani-general-demo'),
     
 ]
